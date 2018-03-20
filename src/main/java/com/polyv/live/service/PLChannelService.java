@@ -175,5 +175,19 @@ public interface PLChannelService {
      */
     PLChannelViewLogsGetResult getChannelViewLogs(int channelId, PLChannelViewLogsGetRequest plChannelViewLogsGetRequest);
 
+    /**
+     * <pre>
+     * 获取频道信息(详见http://dev.polyv.net/2017/liveproduct/l-api/hqzbxx/getchannelid-2/)
+     * 该接口提供用户查询频道信息。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要获取；
+     * 接口地址：http://api.polyv.net/live/v2/channels/{channelId}/get
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelGetRequest 获取频道信息的参数对象。
+     */
+    PLChannelGetResult getChannel(int channelId, PLChannelGetRequest plChannelGetRequest);
+
 
 }

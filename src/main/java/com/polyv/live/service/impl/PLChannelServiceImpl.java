@@ -44,7 +44,7 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
      * @return
      */
     public PLChannelCommonResult setChannelMaxViewer(int channelId, PLChannelMaxViewerSetRequest plChannelMaxViewerSetRequest) {
-        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Max_Viewer_Set, String.valueOf(channelId), plChannelMaxViewerSetRequest.getParams(), Post_Method);
+        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Max_Viewer_Set_Url, String.valueOf(channelId), plChannelMaxViewerSetRequest.getParams(), Post_Method);
     }
 
 
@@ -70,7 +70,7 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
      * @param plChannelPublisherSetRequest 修改频道频道主持人需要的参数对象。
      */
     public PLChannelCommonResult setChannelPublisher(String userId, PLChannelPublisherSetRequest plChannelPublisherSetRequest) {
-        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Publisher_Set, userId, plChannelPublisherSetRequest.getParams(), Post_Method);
+        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Publisher_Set_Url, userId, plChannelPublisherSetRequest.getParams(), Post_Method);
     }
 
     /**
@@ -82,7 +82,7 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
      * @param plChannelDeleteRequest 删除频道的参数对象。
      */
     public PLChannelCommonResult deleteChannel(int channelId, PLChannelDeleteRequest plChannelDeleteRequest) {
-        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Delete, String.valueOf(channelId), plChannelDeleteRequest.getParams(), Post_Method);
+        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Delete_Url, String.valueOf(channelId), plChannelDeleteRequest.getParams(), Post_Method);
     }
 
 
@@ -95,7 +95,7 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
      * @param plChannelPasswordSetRequest 设置频道密码参数对象。
      */
     public PLChannelCommonResult setChannelPassword(String userId, PLChannelPasswordSetRequest plChannelPasswordSetRequest) {
-        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Password_Set, userId, plChannelPasswordSetRequest.getParams(), Post_Method);
+        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Password_Set_Url, userId, plChannelPasswordSetRequest.getParams(), Post_Method);
     }
 
 
@@ -108,7 +108,7 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
      * @param plChannelPlaybackSetRequest 设置频道回放开关参数对象。
      */
     public PLChannelCommonResult setChannelPlayback(String userId, PLChannelPlaybackSetRequest plChannelPlaybackSetRequest) {
-        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Playback_Set, userId, plChannelPlaybackSetRequest.getParams(), Post_Method);
+        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Playback_Set_Url, userId, plChannelPlaybackSetRequest.getParams(), Post_Method);
     }
 
 
@@ -121,7 +121,7 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
      * @param plChannelSummaryListGetRequest 获取频道汇总统计的播放数据的参数对象。
      */
     public PLChannelSummaryListGetResult getChannelSummaryList(String userId, PLChannelSummaryListGetRequest plChannelSummaryListGetRequest) {
-        String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.Channel_Summary_List_Get, userId);
+        String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.Channel_Summary_List_Get_Url, userId);
         WrappedResponse response = request(url, plChannelSummaryListGetRequest.getParams(), Get_Method);
         PLChannelSummaryListGetResult result = new PLChannelSummaryListGetResult();
         if (response.isRequestOk()) {
@@ -142,7 +142,7 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
      * @param stream 流名（可调用获取频道信息接口，获取stream字段的值）
      */
     public String getChannelLiveStatus(String stream) {
-        return HttpClientUtil.getInstance().sendHttpGet(PolyvLiveConstants.Channel_Live_Status_Get + stream);
+        return HttpClientUtil.getInstance().sendHttpGet(PolyvLiveConstants.Channel_Live_Status_Get_Url + stream);
     }
 
 
@@ -154,7 +154,7 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
      * @param plChannelViewersGetRequest 获取多个频道实时在线人数的参数对象。
      */
     public PLChannelViewersGetResult getChannelViewers(PLChannelViewersGetRequest plChannelViewersGetRequest) {
-        WrappedResponse response = request(PolyvLiveConstants.Channel_Real_Time_Viewers_Get, plChannelViewersGetRequest.getParams(), Get_Method);
+        WrappedResponse response = request(PolyvLiveConstants.Channel_Real_Time_Viewers_Get_Url, plChannelViewersGetRequest.getParams(), Get_Method);
         PLChannelViewersGetResult result = new PLChannelViewersGetResult();
         if (response.isRequestOk()) {
             String json = JSON.toJSONString(response.getData());
@@ -173,7 +173,7 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
      * @param plChannelViewLogsGetRequest 获取用户获取频道观看分页日志信息的参数对象。
      */
     public PLChannelViewLogsGetResult getChannelViewLogs(int channelId, PLChannelViewLogsGetRequest plChannelViewLogsGetRequest) {
-        String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.Channel_View_Logs_Get, String.valueOf(channelId));
+        String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.Channel_View_Logs_Get_Url, String.valueOf(channelId));
         WrappedResponse response = request(url, plChannelViewLogsGetRequest.getParams(), Get_Method);
         PLChannelViewLogsGetResult result = new PLChannelViewLogsGetResult();
         if (response.isRequestOk()) {
@@ -183,6 +183,25 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
                 String json = JSON.toJSONString(jsonObject.get("contents"));
                 result.setChannelViewLogs(JSONObject.parseArray(json, ChannelViewLog.class));
             }
+        }
+        return getResult(response, result);
+    }
+
+
+    /**
+     * <pre>
+     * 获取频道信息
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelGetRequest 获取频道信息的参数对象。
+     */
+    public PLChannelGetResult getChannel(int channelId, PLChannelGetRequest plChannelGetRequest) {
+        String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.Channel_Get_Url, String.valueOf(channelId));
+        WrappedResponse response = request(url, plChannelGetRequest.getParams(), Get_Method);
+        PLChannelGetResult result = new PLChannelGetResult();
+        if (response.isRequestOk()) {
+            result = JSONArray.toJavaObject((JSONObject)response.getData(), PLChannelGetResult.class);
         }
         return getResult(response, result);
     }

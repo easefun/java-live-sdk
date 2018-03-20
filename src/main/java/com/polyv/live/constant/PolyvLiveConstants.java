@@ -32,47 +32,52 @@ public class PolyvLiveConstants {
     /**
      * 修改主持人姓名URL
      */
-    public static final String Channel_Publisher_Set = Base_Uri + "v2/channelSetting/" + Param_Replace_Char + "/setPublisher";
+    public static final String Channel_Publisher_Set_Url = Base_Uri + "v2/channelSetting/" + Param_Replace_Char + "/setPublisher";
 
     /**
      * 设置频道号密码
      */
-    public static final String Channel_Password_Set = Base_Uri + "v2/channels/" + Param_Replace_Char + "/passwdSetting";
+    public static final String Channel_Password_Set_Url = Base_Uri + "v2/channels/" + Param_Replace_Char + "/passwdSetting";
 
     /**
      * 设置后台回放开关
      */
-    public static final String Channel_Playback_Set = Base_Uri + "v2/channelSetting/" + Param_Replace_Char + "/setPlayBackEnabled";
+    public static final String Channel_Playback_Set_Url = Base_Uri + "v2/channelSetting/" + Param_Replace_Char + "/setPlayBackEnabled";
 
     /**
      * 获取按频道汇总统计的播放数据
      */
-    public static final String Channel_Summary_List_Get = Base_Uri + "v2/statistics/" + Param_Replace_Char + "/channel_summary";
+    public static final String Channel_Summary_List_Get_Url = Base_Uri + "v2/statistics/" + Param_Replace_Char + "/channel_summary";
 
     /**
      * 获取频道直播状态
      */
-    public static final String Channel_Live_Status_Get = "http://api.polyv.net/live_status/query?stream=";
+    public static final String Channel_Live_Status_Get_Url = "http://api.polyv.net/live_status/query?stream=";
 
     /**
      * 获取多个频道的实时在线人数
      */
-    public static final String Channel_Real_Time_Viewers_Get = Base_Uri + "v2/statistics/get-realtime-viewers";
+    public static final String Channel_Real_Time_Viewers_Get_Url = Base_Uri + "v2/statistics/get-realtime-viewers";
 
     /**
      * 分页获取频道观看日志
      */
-    public static final String Channel_View_Logs_Get = Base_Uri + "v2/statistics/" + Param_Replace_Char + "/viewlog";
+    public static final String Channel_View_Logs_Get_Url = Base_Uri + "v2/statistics/" + Param_Replace_Char + "/viewlog";
 
     /**
      * 删除频道
      */
-    public static final String Channel_Delete = Base_Uri + "v2/channels/" + Param_Replace_Char + "/delete";
+    public static final String Channel_Delete_Url = Base_Uri + "v2/channels/" + Param_Replace_Char + "/delete";
 
     /**
      * 设置最大在线人数
      */
-    public static final String Channel_Max_Viewer_Set = Base_Uri + "v2/channelRestrict/" + Param_Replace_Char + "/set-max-viewer";
+    public static final String Channel_Max_Viewer_Set_Url = Base_Uri + "v2/channelRestrict/" + Param_Replace_Char + "/set-max-viewer";
+
+    /**
+     * 获取频道信息的接口
+     */
+    public static final String Channel_Get_Url = Base_Uri + "v2/channels/" + Param_Replace_Char + "/get";
 
     /**
      * 400错误码
