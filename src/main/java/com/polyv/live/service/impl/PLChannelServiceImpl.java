@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.polyv.live.bean.client.WrappedResponse;
+import com.polyv.live.bean.request.PLBaseRequest;
 import com.polyv.live.bean.request.channel.*;
 import com.polyv.live.bean.result.channel.*;
 import com.polyv.live.constant.PolyvLiveConstants;
@@ -204,6 +205,37 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
             result = JSONArray.toJavaObject((JSONObject)response.getData(), PLChannelGetResult.class);
         }
         return getResult(response, result);
+    }
+
+    /**
+     * <pre>
+     * 查询频道录制文件列表
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelRecordFilesGetRequest 获取频道录制文件的参数对象。
+     */
+    public PLChannelRecordFilesGetResult getChannelRecordFiles(int channelId, PLChannelRecordFilesGetRequest plChannelRecordFilesGetRequest) {
+        String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.Channel_Record_Files_Url, String.valueOf(channelId));
+        WrappedResponse response = request(url, plChannelRecordFilesGetRequest.getParams(), Get_Method);
+        PLChannelRecordFilesGetResult result = new PLChannelRecordFilesGetResult();
+        if (response.isRequestOk()) {
+            String json = JSON.toJSONString(response.getData());
+            result.setRecordFiles(JSONObject.parseArray(json, RecordFile.class));
+        }
+        return getResult(response, result);
+    }
+
+    /**
+     * <pre>
+     * 直播录制文件转存点播
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelRecordFileConvertRequest 录制文件转存请求的参数对象。
+     */
+    public PLChannelCommonResult convertChannelRecords(int channelId, PLChannelRecordFileConvertRequest plChannelRecordFileConvertRequest) {
+        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Record_File_Convert, String.valueOf(channelId), plChannelRecordFileConvertRequest.getParams(), Post_Method);
     }
 
 

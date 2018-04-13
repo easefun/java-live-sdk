@@ -1,5 +1,6 @@
 package com.polyv.live.service;
 
+import com.polyv.live.bean.request.PLBaseRequest;
 import com.polyv.live.bean.request.channel.*;
 import com.polyv.live.bean.result.channel.*;
 
@@ -28,7 +29,7 @@ public interface PLChannelService {
 
     /**
      * <pre>
-     * 设置频道最大在线人数(详见http://dev.polyv.net/2016/liveproduct/l-api/szgkygg/setmaxviewer/)
+     * 设置频道最大在线人数(详见http://dev.polyv.net/2018/liveproduct/l-api/szgkygg/setmaxviewerv2/)
      * 该接口提供设置直播频道的最大在线观看人数。
      * 需要调用该接口的情况：
      * ◆ 业务需要限制观看直播频道的最大在线人数；
@@ -73,7 +74,7 @@ public interface PLChannelService {
 
     /**
      * <pre>
-     * 删除频道(详见http://dev.polyv.net/2016/liveproduct/l-api/zbglgn/deletechannelid/)
+     * 删除频道(详见http://dev.polyv.net/2018/liveproduct/l-api/zbglgn/deletechannel/)
      * 该接口提供用户删除直播频道。
      * 需要调用该接口的情况：
      * ◆ 业务需要删除无用的直播频道；
@@ -180,7 +181,7 @@ public interface PLChannelService {
      * 获取频道信息(详见http://dev.polyv.net/2017/liveproduct/l-api/hqzbxx/getchannelid-2/)
      * 该接口提供用户查询频道信息。
      * 需要调用该接口的情况：
-     * ◆ 业务需要获取；
+     * ◆ 业务需要获取频道信息；
      * 接口地址：http://api.polyv.net/live/v2/channels/{channelId}/get
      * </pre>
      *
@@ -188,6 +189,34 @@ public interface PLChannelService {
      * @param plChannelGetRequest 获取频道信息的参数对象。
      */
     PLChannelGetResult getChannel(int channelId, PLChannelGetRequest plChannelGetRequest);
+
+    /**
+     * <pre>
+     * 查询频道录制文件信息(详见http://dev.polyv.net/2017/liveproduct/l-api/hfgn/recordfilesinfo/)
+     * 该接口提供用户获取频道录制文件信息。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要获取频道录制文件信息进行播放；
+     * 接口地址：http://api.polyv.net/live/v2/channels/{channelId}/recordFiles
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelRecordFilesGetRequest 获取用户获取频道录制文件请求的参数对象。
+     */
+    PLChannelRecordFilesGetResult getChannelRecordFiles(int channelId, PLChannelRecordFilesGetRequest plChannelRecordFilesGetRequest);
+
+    /**
+     * <pre>
+     * 直播录制文件转存点播(详见http://dev.polyv.net/2017/liveproduct/l-api/hfgn/livetovod/)
+     * 该接口提供用户将直播文件转存点播。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要想录制文件转存到点播并使用点播播放器播放；
+     * 接口地址：http://api.polyv.net/live/v2/channel/recordFile/{channelId}/convert
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelRecordFileConvertRequest 录制文件转存请求的参数对象。
+     */
+    PLChannelCommonResult convertChannelRecords(int channelId, PLChannelRecordFileConvertRequest plChannelRecordFileConvertRequest);
 
 
 }

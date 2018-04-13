@@ -80,6 +80,16 @@ public class PolyvLiveConstants {
     public static final String Channel_Get_Url = Base_Uri + "v2/channels/" + Param_Replace_Char + "/get";
 
     /**
+     * 获取频道录制视频信息接口
+     */
+    public static final String Channel_Record_Files_Url = Base_Uri + "v2/channels/" + Param_Replace_Char + "/recordFiles";
+
+    /**
+     * 直播转存点播接口
+     */
+    public static final String Channel_Record_File_Convert = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/convert";
+
+    /**
      * 400错误码
      */
     public static final int Code_400 = 400;
