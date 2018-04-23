@@ -69,7 +69,7 @@ public class PLChannelCreateRequest extends PLBaseRequest {
      * 描述：创建的频道是否自动播放
      * </pre>
      */
-    protected int autoPlay;
+    protected Integer autoPlay;
 
     /**
      * <pre>
@@ -115,11 +115,11 @@ public class PLChannelCreateRequest extends PLBaseRequest {
         this.courseId = courseId;
     }
 
-    public int getAutoPlay() {
+    public Integer getAutoPlay() {
         return autoPlay;
     }
 
-    public void setAutoPlay(int autoPlay) {
+    public void setAutoPlay(Integer autoPlay) {
         this.autoPlay = autoPlay;
     }
 
