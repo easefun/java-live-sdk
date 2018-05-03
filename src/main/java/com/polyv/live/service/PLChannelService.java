@@ -218,5 +218,62 @@ public interface PLChannelService {
      */
     PLChannelCommonResult convertChannelRecords(int channelId, PLChannelRecordFileConvertRequest plChannelRecordFileConvertRequest);
 
+    /**
+     * <pre>
+     * 获取频道回放列表(详见http://dev.polyv.net/2017/liveproduct/l-api/hfgn/getplaybacklist/)
+     * 该接口提供用户获取频道回放列表。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要对回放列表进行操作，需要先获取回放列表；
+     * ◆ 业务需要用于展示；
+     * 接口地址：http://api.polyv.net/live/v2/channel/recordFile/{channelId}/playback/list
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelPlaybackListGetRequest 回放列表请求的参数对象。
+     */
+    PLChannelPlaybackListGetResult getChannelPlaybacks(int channelId, PLChannelPlaybackListGetRequest plChannelPlaybackListGetRequest);
+
+    /**
+     * <pre>
+     * 设置频道回放列表的默认回放视频(详见http://dev.polyv.net/2017/liveproduct/l-api/hfgn/setdefault/)
+     * 该接口提供用户可以设置自己频道的默认回放视频。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要设置默认的回放用于频道回放需要；
+     * 接口地址：http://api.polyv.net/live/v2/channel/recordFile/{channelId}/playback/set-Default
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelPlaybackSetDefaultRequest 设置默认回放视频的请求的参数对象。
+     */
+    PLChannelCommonResult setPlaybackListDefault(int channelId, PLChannelPlaybackSetDefaultRequest plChannelPlaybackSetDefaultRequest);
+
+    /**
+     * <pre>
+     * 删除回放视频(详见http://dev.polyv.net/2017/liveproduct/l-api/hfgn/deleteplaybackvideo/)
+     * 该接口提供用户删除回放视频。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要想删除回放列表中的视频；
+     * 接口地址：http://api.polyv.net/live/v2/channel/recordFile/{channelId}/playback/delete
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelPlaybackDeleteRequest 删除回放视频请求的参数对象。
+     */
+    PLChannelCommonResult deletePlaybackVideo(int channelId, PLChannelPlaybackDeleteRequest plChannelPlaybackDeleteRequest);
+
+    /**
+     * <pre>
+     * 直播录制文件合并(详见http://dev.polyv.net/2018/liveproduct/l-api/hfgn/recordfile-merge/)
+     * 该接口提供用户将频道的几个录制文件合并。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要将两个录制文件合并；
+     * 接口地址：https://api.polyv.net/live/v2/channel/recordFile/{channelId}/merge
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelRecordFileMergeRequest 录制文件合并请求的参数对象。
+     */
+    PLChannelCommonResult mergeChannelRecords(int channelId, PLChannelRecordFileMergeRequest plChannelRecordFileMergeRequest);
+
 
 }

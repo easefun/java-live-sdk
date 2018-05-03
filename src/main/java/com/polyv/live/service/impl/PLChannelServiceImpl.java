@@ -235,7 +235,66 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
      * @param plChannelRecordFileConvertRequest 录制文件转存请求的参数对象。
      */
     public PLChannelCommonResult convertChannelRecords(int channelId, PLChannelRecordFileConvertRequest plChannelRecordFileConvertRequest) {
-        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Record_File_Convert, String.valueOf(channelId), plChannelRecordFileConvertRequest.getParams(), Post_Method);
+        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Record_File_Convert_Url, String.valueOf(channelId), plChannelRecordFileConvertRequest.getParams(), Post_Method);
+    }
+
+    /**
+     * <pre>
+     * 获取频道回放列表
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelPlaybackListGetRequest 回放列表请求的参数对象。
+     */
+    public PLChannelPlaybackListGetResult getChannelPlaybacks(int channelId, PLChannelPlaybackListGetRequest plChannelPlaybackListGetRequest) {
+        String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.Channel_Playback_List_Url, String.valueOf(channelId));
+        WrappedResponse response = request(url, plChannelPlaybackListGetRequest.getParams(), Get_Method);
+        PLChannelPlaybackListGetResult result = new PLChannelPlaybackListGetResult();
+        if (response.isRequestOk()) {
+            result = JSONArray.toJavaObject((JSONObject)response.getData(), PLChannelPlaybackListGetResult.class);
+            JSONObject jsonObject = (JSONObject) response.getData();
+            if (null != jsonObject) {
+                String json = JSON.toJSONString(jsonObject.get("contents"));
+                result.setPlaybacks(JSONObject.parseArray(json, Playback.class));
+            }
+        }
+        return getResult(response, result);
+    }
+
+    /**
+     * <pre>
+     * 设置频道回放列表的默认回放视频
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelPlaybackSetDefaultRequest 设置默认回放视频的请求的参数对象。
+     */
+    public PLChannelCommonResult setPlaybackListDefault(int channelId, PLChannelPlaybackSetDefaultRequest plChannelPlaybackSetDefaultRequest) {
+        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Playback_Set_Default_Url, String.valueOf(channelId), plChannelPlaybackSetDefaultRequest.getParams(), Post_Method);
+    }
+
+    /**
+     * <pre>
+     * 删除回放视频
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelPlaybackDeleteRequest 删除回放视频请求的参数对象。
+     */
+    public PLChannelCommonResult deletePlaybackVideo(int channelId, PLChannelPlaybackDeleteRequest plChannelPlaybackDeleteRequest) {
+        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Playback_Delete_Url, String.valueOf(channelId), plChannelPlaybackDeleteRequest.getParams(), Post_Method);
+    }
+
+    /**
+     * <pre>
+     * 直播录制文件合并
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelRecordFileMergeRequest 录制文件合并请求的参数对象。
+     */
+    public PLChannelCommonResult mergeChannelRecords(int channelId, PLChannelRecordFileMergeRequest plChannelRecordFileMergeRequest) {
+        return getPLChannelCommonResult(PolyvLiveConstants.Channel_Record_File_Merge_Url, String.valueOf(channelId), plChannelRecordFileMergeRequest.getParams(), Post_Method);
     }
 
 

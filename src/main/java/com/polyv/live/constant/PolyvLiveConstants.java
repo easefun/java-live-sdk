@@ -87,7 +87,27 @@ public class PolyvLiveConstants {
     /**
      * 直播转存点播接口
      */
-    public static final String Channel_Record_File_Convert = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/convert";
+    public static final String Channel_Record_File_Convert_Url = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/convert";
+
+    /**
+     * 获取回放列表接口
+     */
+    public static final String Channel_Playback_List_Url = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/playback/list";
+
+    /**
+     * 设置默认回放视频
+     */
+    public static final String Channel_Playback_Set_Default_Url = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/playback/set-Default";
+
+    /**
+     * 删除回放列表视频
+     */
+    public static final String Channel_Playback_Delete_Url = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/playback/delete";
+
+    /**
+     * 合并录制文件
+     */
+    public static final String Channel_Record_File_Merge_Url = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/merge";
 
     /**
      * 400错误码
