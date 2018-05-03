@@ -14,14 +14,14 @@ public class PLChannelSummaryListGetRequest extends PLBaseRequest {
     /**
      * <pre>
      * 字段名：频道ID
-     * 变量名：channelId
+     * 变量名：channelIds
      * 是否必填：否
-     * 类型：Int(11)
-     * 示例值：10001
-     * 描述：POLYV账号下的直播频道ID
+     * 类型：String(32)
+     * 示例值：10001,10002
+     * 描述：POLYV账号下的直播频道ID,传递多个使用逗号隔开
      * </pre>
      */
-    protected Integer channelId;
+    protected String channelIds;
 
     /**
      * <pre>
@@ -47,12 +47,12 @@ public class PLChannelSummaryListGetRequest extends PLBaseRequest {
      */
     protected String endDate;
 
-    public Integer getChannelId() {
-        return channelId;
+    public String getChannelIds() {
+        return channelIds;
     }
 
-    public void setChannelId(Integer channelId) {
-        this.channelId = channelId;
+    public void setChannelIds(String channelIds) {
+        this.channelIds = channelIds;
     }
 
     public String getStartDate() {
@@ -75,14 +75,15 @@ public class PLChannelSummaryListGetRequest extends PLBaseRequest {
         super(appId, appSecret);
     }
 
+
     @Override
     public String toString() {
         return "PLChannelSummaryListGetRequest{" +
-                "channelId=" + channelId +
-                ", appId='" + appId + '\'' +
+                "channelIds='" + channelIds + '\'' +
                 ", startDate='" + startDate + '\'' +
-                ", appSecret='" + appSecret + '\'' +
                 ", endDate='" + endDate + '\'' +
+                ", appId='" + appId + '\'' +
+                ", appSecret='" + appSecret + '\'' +
                 ", timestamp=" + timestamp +
                 ", sign='" + sign + '\'' +
                 '}';
