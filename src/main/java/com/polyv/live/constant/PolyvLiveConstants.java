@@ -12,7 +12,7 @@ public class PolyvLiveConstants {
     /**
      * POLYV live api base uri
      */
-    private static final String Base_Uri = "http://api.polyv.net/live/";
+    private static final String Base_Uri = "https://api.polyv.net/live/";
 
     /**
      * url 替换通配符
