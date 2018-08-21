@@ -1,8 +1,12 @@
 package com.polyv.live.util;
 
 import com.polyv.live.bean.client.HttpDeleteWithBody;
+import com.polyv.live.bean.client.RequestHost;
+import com.polyv.live.enumeration.ProxyType;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpHost;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -21,6 +25,8 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -33,13 +39,21 @@ import java.util.Map;
  * @author HuangYF
  */
 public class HttpClientUtil {
-    
-    private static final Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
+
+    private static final String CHARSET_UTF8 = "UTF-8";
+
+    private static final Logger LOG = LoggerFactory.getLogger(HttpClientUtil.class);
+
+    private static final String HTTPS_SCHEME = "https";
     
     private RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(15000).setConnectTimeout(15000)
             .setConnectionRequestTimeout(15000).build();
 
     private static HttpClientUtil instance = null;
+
+    private RequestHost requestHost = null;
+
+    private String defaultProxyHost = null;
 
     private HttpClientUtil() {
     }
@@ -48,6 +62,17 @@ public class HttpClientUtil {
         if (null == instance) {
             instance = new HttpClientUtil();
         }
+        instance.requestHost = null;
+        instance.defaultProxyHost = null;
+        return instance;
+    }
+
+    public static HttpClientUtil getInstance(RequestHost requestHost, String proxyHost) {
+        if (null == instance) {
+            instance = new HttpClientUtil();
+        }
+        instance.requestHost = requestHost;
+        instance.defaultProxyHost = proxyHost;
         return instance;
     }
 
@@ -56,7 +81,7 @@ public class HttpClientUtil {
      * @param httpUrl 地址
      */
     public String sendHttpPost(String httpUrl) {
-        HttpPost httpPost = new HttpPost(httpUrl); // 创建httpPost
+        HttpPost httpPost = new HttpPost(httpUrl);
         return sendHttpRequest(httpPost);
     }
 
@@ -66,14 +91,14 @@ public class HttpClientUtil {
      * @param params 参数(格式:key1=value1&key2=value2)
      */
     public String sendHttpPost(String httpUrl, String params) {
-        HttpPost httpPost = new HttpPost(httpUrl);// 创建httpPost
+        HttpPost httpPost = new HttpPost(httpUrl);
         try {
             // 设置参数
-            StringEntity stringEntity = new StringEntity(params, "UTF-8");
+            StringEntity stringEntity = new StringEntity(params, CHARSET_UTF8);
             stringEntity.setContentType("application/x-www-form-urlencoded");
             httpPost.setEntity(stringEntity);
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
         return sendHttpRequest(httpPost);
     }
@@ -81,19 +106,19 @@ public class HttpClientUtil {
     /**
      * 发送 post请求
      * @param httpUrl 地址
-     * @param headers
+     * @param headers 请求头
      * @param params 参数(格式:key1=value1&key2=value2)
      */
     public String sendHttpPostWithHeader(String httpUrl, String params, Header[] headers) {
-        HttpPost httpPost = new HttpPost(httpUrl);// 创建httpPost
+        HttpPost httpPost = new HttpPost(httpUrl);
         try {
             httpPost.setHeaders(headers);
             // 设置参数
-            StringEntity stringEntity = new StringEntity(params, "UTF-8");
+            StringEntity stringEntity = new StringEntity(params, CHARSET_UTF8);
             stringEntity.setContentType("application/x-www-form-urlencoded");
             httpPost.setEntity(stringEntity);
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
         return sendHttpRequest(httpPost);
     }
@@ -104,7 +129,7 @@ public class HttpClientUtil {
      * @param maps 参数
      */
     public String sendHttpPost(String httpUrl, Map<String, String> maps) {
-        HttpPost httpPost = new HttpPost(httpUrl);// 创建httpPost
+        HttpPost httpPost = new HttpPost(httpUrl);
         if (null != maps && !maps.isEmpty()) {
             httpPost.setEntity(this.getNameValuePair(maps));
         }
@@ -118,10 +143,10 @@ public class HttpClientUtil {
      * @param fileLists 附件
      */
     public String sendHttpPost(String httpUrl, Map<String, String> maps, List<File> fileLists) {
-        HttpPost httpPost = new HttpPost(httpUrl);// 创建httpPost
+        HttpPost httpPost = new HttpPost(httpUrl);
         MultipartEntityBuilder meBuilder = MultipartEntityBuilder.create();
-        for (String key : maps.keySet()) {
-            meBuilder.addPart(key, new StringBody(maps.get(key), ContentType.TEXT_PLAIN));
+        for (Map.Entry<String, String> entry : maps.entrySet()) {
+            meBuilder.addPart(entry.getKey(), new StringBody(entry.getValue(), ContentType.TEXT_PLAIN));
         }
         for (File file : fileLists) {
             FileBody fileBody = new FileBody(file);
@@ -137,7 +162,7 @@ public class HttpClientUtil {
      * @return 成功时为响应内容，失败时为 null
      */
     public String sendHttpGet(String httpUrl) {
-        HttpGet httpGet = new HttpGet(httpUrl);// 创建get请求
+        HttpGet httpGet = new HttpGet(httpUrl);
         return sendHttpRequest(httpGet);
     }
 
@@ -159,12 +184,12 @@ public class HttpClientUtil {
         try {
             // 创建参数队列
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-            for (String key : maps.keySet()) {
-                nameValuePairs.add(new BasicNameValuePair(key, maps.get(key)));
+            for (Map.Entry<String, String> entry : maps.entrySet()) {
+                nameValuePairs.add(new BasicNameValuePair(entry.getKey(), entry.getValue()));
             }
-            return new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
+            return new UrlEncodedFormEntity(nameValuePairs, CHARSET_UTF8);
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         }
         return null;
     }
@@ -191,32 +216,135 @@ public class HttpClientUtil {
     private String sendHttpRequest(HttpRequestBase httpRequest) {
         CloseableHttpClient httpClient = null;
         CloseableHttpResponse response = null;
-        httpRequest.setConfig(requestConfig);
+        if (null != requestHost){
+            boolean status = setProxyToRequest(httpRequest);
+            if (!status) return null;
+        } else {
+            httpRequest.setConfig(requestConfig);
+        }
+
         try {
             // 创建默认的httpClient实例.
             httpClient = HttpClients.createDefault();
 
             // 执行请求
             response = httpClient.execute(httpRequest);
-            logger.info("Http请求状态码：" + response.getStatusLine().getStatusCode());
-            String responseContent = EntityUtils.toString(response.getEntity(), "UTF-8");
-            return responseContent;
+            LOG.info("Http请求状态码：{}", response.getStatusLine().getStatusCode());
+            return EntityUtils.toString(response.getEntity(), CHARSET_UTF8);
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            LOG.error(e.getMessage(), e);
         } finally {
-            try {
-                // 关闭连接,释放资源
-                if (response != null) {
+            // 关闭连接,释放资源
+            if (null != response) {
+                try {
                     response.close();
+                } catch (IOException e) {
+                    LOG.error(e.getMessage(), e);
                 }
-                if (httpClient != null) {
+            }
+            if (null != httpClient) {
+                try {
                     httpClient.close();
+                } catch (IOException e) {
+                    LOG.error(e.getMessage(), e);
                 }
-            } catch (IOException e) {
-                logger.error(e.getMessage(), e);
             }
         }
         return null;
+    }
+
+    /**
+     * 在请求中设置代理
+     */
+    private boolean setProxyToRequest(HttpRequestBase httpRequest) {
+        if (ProxyType.FORWARD.getValue().equals(requestHost.getProxyType())) {
+            // 正向代理
+            RequestConfig customRequestConfig = getCustomRequestConfig(requestHost);
+            if (null == customRequestConfig) {
+                return false;
+            }
+            httpRequest.setConfig(customRequestConfig);
+        } else {
+            // 反向代理
+            String host = StringUtils.isBlank(requestHost.getIp()) ? requestHost.getHost() : requestHost.getIp();
+            if (0 != requestHost.getPort()) {
+                host += ":" + requestHost.getPort();
+            }
+
+            String url = httpRequest.getURI().toString();
+            url = url.replace(defaultProxyHost, host);
+
+            // 替换scheme
+            url = replaceScheme(url);
+            try {
+                httpRequest.setURI(new URI(url));
+            } catch (URISyntaxException e) {
+                LOG.error("生成代理url出错了，cause={}", e);
+                return false;
+            }
+
+            // 设置host头
+            setHostHeader(httpRequest);
+
+            httpRequest.setConfig(requestConfig);
+        }
+        return true;
+    }
+
+    /**
+     * 把host添加到header中
+     * @param httpRequest http请求
+     */
+    private void setHostHeader(HttpRequestBase httpRequest) {
+        boolean isHttps = StringUtils.isNotBlank(requestHost.getScheme()) && HTTPS_SCHEME.equals(requestHost.getScheme());
+        int port = requestHost.getPort();
+        if (StringUtils.isNotBlank(requestHost.getHost())) {
+            if ((0 != port) && (443 != port) && isHttps) {
+                httpRequest.setHeader("Host", requestHost.getHost());
+            } else if ((0 != port) && (80 != port) && !isHttps) {
+                httpRequest.setHeader("Host", requestHost.getHost() + ":" + port);
+            } else {
+                httpRequest.setHeader("Host", requestHost.getHost());
+            }
+        } else {
+            httpRequest.setHeader("Host", defaultProxyHost);
+        }
+    }
+
+    /**
+     * 替换scheme
+     * @param url 请求地址
+     * @return 替换后的地址
+     */
+    private String replaceScheme(String url) {
+        boolean isHttps = url.startsWith(HTTPS_SCHEME);
+        if (isHttps) {
+            if (StringUtils.isBlank(requestHost.getScheme())
+                    || !HTTPS_SCHEME.equals(requestHost.getScheme())) {
+                url = url.replace(HTTPS_SCHEME, HttpHost.DEFAULT_SCHEME_NAME);
+            }
+        } else {
+            if (StringUtils.isNotBlank(requestHost.getScheme())
+                    && HTTPS_SCHEME.equals(requestHost.getScheme())) {
+                url = url.replace(HttpHost.DEFAULT_SCHEME_NAME, HTTPS_SCHEME);
+            }
+        }
+        return url;
+    }
+
+    /**
+     * 生成自定义请求代理配置
+     * @param proxy 代理
+     * @return 请求配置
+     */
+    private RequestConfig getCustomRequestConfig(RequestHost proxy) {
+        String scheme = HttpHost.DEFAULT_SCHEME_NAME;
+        if (StringUtils.isNotBlank(proxy.getScheme()) && HTTPS_SCHEME.equals(proxy.getScheme())) {
+            scheme = proxy.getScheme();
+        }
+        HttpHost host = new HttpHost(proxy.getHost(), proxy.getPort(), scheme);
+        return RequestConfig.custom().setProxy(host).setSocketTimeout(15000).setConnectTimeout(15000)
+                .setConnectionRequestTimeout(15000).build();
     }
 
 }

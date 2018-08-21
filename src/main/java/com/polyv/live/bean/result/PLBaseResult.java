@@ -68,4 +68,12 @@ public abstract class PLBaseResult {
                 ", message='" + message + '\'' +
                 '}';
     }
+
+    /**
+     * 判断请求是否成功
+     * @return true/false
+     */
+    public boolean isRequestOk() {
+        return 200 == this.code;
+    }
 }

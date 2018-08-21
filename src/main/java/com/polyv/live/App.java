@@ -1,5 +1,8 @@
 package com.polyv.live;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * <pre>
  *  SDK Version
@@ -9,8 +12,10 @@ package com.polyv.live;
  */
 public class App {
 
+    private static final Logger LOG = LoggerFactory.getLogger(App.class);
+
     public static void main(String[] args) {
-        System.out.println("Polyv Live Sdk Version -- 1.2.0");
+        LOG.info("Polyv Live Sdk Version -- 1.3.0");
     }
 
 }

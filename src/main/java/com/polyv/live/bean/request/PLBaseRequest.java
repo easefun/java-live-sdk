@@ -118,8 +118,8 @@ public abstract class PLBaseRequest {
      */
     private String generateSign(Map<String, String> params) {
         String concatStr = this.concatParams(params);
-        String appSecret = this.getAppSecret();
-        String plain = appSecret + concatStr + appSecret;
+        String secret = this.getAppSecret();
+        String plain = secret + concatStr + secret;
         return EncryptionUtils.md5Hex(plain).toUpperCase();
     }
 
@@ -133,9 +133,11 @@ public abstract class PLBaseRequest {
         if (null == sArray || sArray.size() <= 0) {
             return result;
         }
-        for (String key : sArray.keySet()) {
-            String value = sArray.get(key);
-            if (StringUtils.isBlank(value) || key.equalsIgnoreCase("appSecret")) {
+        for (Map.Entry<String, String> entry : sArray.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            if (StringUtils.isBlank(value) || key.equalsIgnoreCase("appSecret")
+                    || key.equalsIgnoreCase("sign")) {
                 continue;
             }
             result.put(key, value);
@@ -162,7 +164,7 @@ public abstract class PLBaseRequest {
 
     @Override
     public String toString() {
-        return "PolyvLiveBaseRequest{" +
+        return "PLBaseRequest{" +
                 "appId='" + appId + '\'' +
                 ", appSecret='" + appSecret + '\'' +
                 ", timestamp=" + timestamp +

@@ -9,122 +9,153 @@ package com.polyv.live.constant;
  */
 public class PolyvLiveConstants {
 
+    private PolyvLiveConstants() {}
+
     /**
      * POLYV live api base uri
      */
-    private static final String Base_Uri = "https://api.polyv.net/live/";
+    public static final String BASE_DOMAIN = "api.polyv.net";
+
+    /**
+     * POLYV live api base uri
+     */
+    private static final String BASE_URI = "https://api.polyv.net/live/";
 
     /**
      * url 替换通配符
      */
-    private static final String Param_Replace_Char = "{param}";
+    private static final String PARAM_REPLACE_CHAR = "%s";
 
     /**
      * 直播创建频道URL
      */
-    public static final String Channel_Create_Url = Base_Uri + "v2/channels/";
+    public static final String CHANNEL_CREATE_URL = BASE_URI + "v2/channels/";
 
     /**
      * 修改频道名称URL
      */
-    public static final String Channel_Name_Set_Url = Base_Uri + "v2/channels/" + Param_Replace_Char + "/update";
+    public static final String CHANNEL_NAME_SET_URL = BASE_URI + "v2/channels/" + PARAM_REPLACE_CHAR + "/update";
 
     /**
      * 修改主持人姓名URL
      */
-    public static final String Channel_Publisher_Set_Url = Base_Uri + "v2/channelSetting/" + Param_Replace_Char + "/setPublisher";
+    public static final String CHANNEL_PUBLISHER_SET_URL = BASE_URI + "v2/channelSetting/" + PARAM_REPLACE_CHAR + "/setPublisher";
 
     /**
      * 设置频道号密码
      */
-    public static final String Channel_Password_Set_Url = Base_Uri + "v2/channels/" + Param_Replace_Char + "/passwdSetting";
+    public static final String CHANNEL_PWD_SET_URL = BASE_URI + "v2/channels/" + PARAM_REPLACE_CHAR + "/passwdSetting";
 
     /**
      * 设置后台回放开关
      */
-    public static final String Channel_Playback_Set_Url = Base_Uri + "v2/channelSetting/" + Param_Replace_Char + "/setPlayBackEnabled";
+    public static final String CHANNEL_PLAYBACK_SET_URL = BASE_URI + "v2/channelSetting/" + PARAM_REPLACE_CHAR + "/setPlayBackEnabled";
 
     /**
      * 获取按频道汇总统计的播放数据
      */
-    public static final String Channel_Summary_List_Get_Url = Base_Uri + "v2/statistics/" + Param_Replace_Char + "/channel_summary";
+    public static final String CHANNEL_SUMMARY_LIST_GET_URL = BASE_URI + "v2/statistics/" + PARAM_REPLACE_CHAR + "/channel_summary";
 
     /**
      * 获取频道直播状态
      */
-    public static final String Channel_Live_Status_Get_Url = "http://api.polyv.net/live_status/query?stream=";
+    public static final String CHANNEL_LIVE_STATUS_GET_URL = "http://api.polyv.net/live_status/query?stream=";
 
     /**
      * 获取多个频道的实时在线人数
      */
-    public static final String Channel_Real_Time_Viewers_Get_Url = Base_Uri + "v2/statistics/get-realtime-viewers";
+    public static final String CHANNEL_REAL_TIME_VIEWERS_GET_URL = BASE_URI + "v2/statistics/get-realtime-viewers";
 
     /**
      * 分页获取频道观看日志
      */
-    public static final String Channel_View_Logs_Get_Url = Base_Uri + "v2/statistics/" + Param_Replace_Char + "/viewlog";
+    public static final String CHANNEL_VIEW_LOGS_GET_URL = BASE_URI + "v2/statistics/" + PARAM_REPLACE_CHAR + "/viewlog";
 
     /**
      * 删除频道
      */
-    public static final String Channel_Delete_Url = Base_Uri + "v2/channels/" + Param_Replace_Char + "/delete";
+    public static final String CHANNEL_DELETE_URL = BASE_URI + "v2/channels/" + PARAM_REPLACE_CHAR + "/delete";
 
     /**
      * 设置最大在线人数
      */
-    public static final String Channel_Max_Viewer_Set_Url = Base_Uri + "v2/channelRestrict/" + Param_Replace_Char + "/set-max-viewer";
+    public static final String CHANNEL_MAX_VIEWER_SET_URL = BASE_URI + "v2/channelRestrict/" + PARAM_REPLACE_CHAR + "/set-max-viewer";
 
     /**
      * 获取频道信息的接口
      */
-    public static final String Channel_Get_Url = Base_Uri + "v2/channels/" + Param_Replace_Char + "/get";
+    public static final String CHANNEL_GET_URL = BASE_URI + "v2/channels/" + PARAM_REPLACE_CHAR + "/get";
 
     /**
      * 获取频道录制视频信息接口
      */
-    public static final String Channel_Record_Files_Url = Base_Uri + "v2/channels/" + Param_Replace_Char + "/recordFiles";
+    public static final String CHANNEL_RECORD_FILES_URL = BASE_URI + "v2/channels/" + PARAM_REPLACE_CHAR + "/recordFiles";
 
     /**
      * 直播转存点播接口
      */
-    public static final String Channel_Record_File_Convert_Url = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/convert";
+    public static final String CHANNEL_RECORD_FILE_CONVERT_URL = BASE_URI + "v2/channel/recordFile/" + PARAM_REPLACE_CHAR + "/convert";
 
     /**
      * 获取回放列表接口
      */
-    public static final String Channel_Playback_List_Url = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/playback/list";
+    public static final String CHANNEL_PLAYBACK_LIST_URL = BASE_URI + "v2/channel/recordFile/" + PARAM_REPLACE_CHAR + "/playback/list";
 
     /**
      * 设置默认回放视频
      */
-    public static final String Channel_Playback_Set_Default_Url = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/playback/set-Default";
+    public static final String CHANNEL_PLAYBACK_SET_DEFAULT_URL = BASE_URI + "v2/channel/recordFile/" + PARAM_REPLACE_CHAR + "/playback/set-Default";
 
     /**
      * 删除回放列表视频
      */
-    public static final String Channel_Playback_Delete_Url = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/playback/delete";
+    public static final String CHANNEL_PLAYBACK_DELETE_URL = BASE_URI + "v2/channel/recordFile/" + PARAM_REPLACE_CHAR + "/playback/delete";
 
     /**
      * 合并录制文件
      */
-    public static final String Channel_Record_File_Merge_Url = Base_Uri + "v2/channel/recordFile/" + Param_Replace_Char + "/merge";
+    public static final String CHANNEL_RECORD_FILE_MERGE_URL = BASE_URI + "v2/channel/recordFile/" + PARAM_REPLACE_CHAR + "/merge";
+
+    /**
+     * 频道某段时间的直播统计数据
+     */
+    public static final String CHANNEL_DAILY_SUMMARY_URL = BASE_URI + "v2/statistics/" + PARAM_REPLACE_CHAR + "/summary";
+
+    /**
+     * 设置点赞数和观看人数接口
+     */
+    public static final String CHANNEL_LIKES_UPDATE_URL = BASE_URI + "v2/channels/" + PARAM_REPLACE_CHAR + "/update-likes";
+
+    /**
+     * 获取简单的频道列表接口
+     */
+    public static final String CHANNEL_LIST_URL = BASE_URI + "v3/channel/management/list";
 
     /**
      * 400错误码
      */
-    public static final int Code_400 = 400;
+    public static final int CODE_400 = 400;
+
+    /**
+     * 200响应码
+     */
+    public static final int CODE_200 = 200;
 
     /**
      * 请求错误提示
      */
-    public static final String Request_Error_Msg = "Bad Request";
+    public static final String REQUEST_ERR_MSG = "Bad Request";
+
+    /**
+     * 设置代理错误提示
+     */
+    public static final String PROXY_ERR_MSG = "Proxy Error";
 
     /**
      * 获取替换参数后的URL地址
-     * @return
      */
-    public static String getRealUrl(String oldUrl, String param) {
-        return oldUrl.replace(Param_Replace_Char, param);
+    public static String getRealUrl(String format, Object... param) {
+        return String.format(format, param);
     }
 
 }

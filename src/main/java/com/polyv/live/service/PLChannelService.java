@@ -1,6 +1,5 @@
 package com.polyv.live.service;
 
-import com.polyv.live.bean.request.PLBaseRequest;
 import com.polyv.live.bean.request.channel.*;
 import com.polyv.live.bean.result.channel.*;
 
@@ -11,7 +10,7 @@ import com.polyv.live.bean.result.channel.*;
  *
  * @author HuangYF
  */
-public interface PLChannelService {
+public interface PLChannelService extends PLBaseService {
 
     /**
      * <pre>
@@ -275,5 +274,45 @@ public interface PLChannelService {
      */
     PLChannelCommonResult mergeChannelRecords(int channelId, PLChannelRecordFileMergeRequest plChannelRecordFileMergeRequest);
 
+    /**
+     * <pre>
+     * 频道设置点赞数和观看人数(详见http://dev.polyv.net/2018/liveproduct/l-api/szgkygg/update-likes/)
+     * 该接口提供用户设置频道的点赞数和观看人数。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要在观看页展示自己要展示的点赞数和观看人数；
+     * 接口地址：http://api.polyv.net/live/v2/channels/{channelId}/update-likes
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelLikesUpdateRequest 设置点赞数和观看人数请求的参数对象。
+     */
+    PLChannelCommonResult updateLikes(int channelId, PLChannelLikesUpdateRequest plChannelLikesUpdateRequest);
+
+    /**
+     * <pre>
+     * 获取频道某段时间的直播统计数据(详见http://dev.polyv.net/2017/liveproduct/l-api/hqzbxx/summary/)
+     * 该接口提供用户获取频道某段时间的直播统计数据。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要获取频道某段时间的直播统计数据；
+     * 接口地址：http://api.polyv.net/live/v2/statistics/{channelId}/summary
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param plChannelDailySummaryRequest 获取频道某段时间的直播统计数据请求的参数对象。
+     */
+    PLChannelDailySummaryResult getChannelDailySummary(int channelId, PLChannelDailySummaryRequest plChannelDailySummaryRequest);
+
+    /**
+     * <pre>
+     * 获取简单的频道列表(详见http://dev.polyv.net/2018/liveproduct/l-api/hqzbxx/get-simple-channel-list/)
+     * 该接口提供用户获取简单的频道列表。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要获取频道列表并且想分页获取；
+     * 接口地址：http://api.polyv.net/live/v3/channel/management/list
+     * </pre>
+     *
+     * @param plChannelManagementListRequest 获取频道列表请求的参数对象。
+     */
+    PLChannelManagementListResult getSimpleChannelList(PLChannelManagementListRequest plChannelManagementListRequest);
 
 }

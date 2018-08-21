@@ -13,6 +13,8 @@ import java.security.MessageDigest;
  */
 public class EncryptionUtils {
 
+    private EncryptionUtils() {}
+
     /**
      * 对字符串做MD5加密，返回加密后的字符串。
      * @param text 待加密的字符串。
@@ -54,23 +56,23 @@ public class EncryptionUtils {
         try {
             MessageDigest alga = MessageDigest.getInstance(type);
             alga.update(str.getBytes("UTF-8"));
-            byte[] digesta = alga.digest();
-            return byte2hex(digesta);
+            byte[] digest = alga.digest();
+            return byte2hex(digest);
         } catch (Exception e) {
             return "";
         }
     }
 
-    public static String byte2hex(byte[] b) {
-        String hs = "";
-        String stmp;
+    private static String byte2hex(byte[] b) {
+        StringBuilder hs = new StringBuilder();
+        String str;
         for (int n = 0; n < b.length; n++) {
-            stmp = (Integer.toHexString(b[n] & 0XFF));
-            if (stmp.length() == 1)
-                hs = hs + "0" + stmp;
-            else hs = hs + stmp;
+            str = (Integer.toHexString(b[n] & 0XFF));
+            if (1 == str.length())
+                hs.append("0").append(str);
+            else hs.append(str);
         }
-        return hs.toUpperCase();
+        return hs.toString().toUpperCase();
     }
 
 }

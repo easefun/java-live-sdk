@@ -1,10 +1,12 @@
 package com.polyv.live.service;
 
+import com.polyv.live.bean.client.RequestHost;
 import com.polyv.live.bean.client.WrappedResponse;
+import com.polyv.live.bean.client.WrappedResponseV1;
 import com.polyv.live.bean.result.PLBaseResult;
 import com.polyv.live.bean.result.channel.PLChannelCommonResult;
-import com.polyv.live.bean.result.channel.PLChannelCreateResult;
 import com.polyv.live.constant.PolyvLiveConstants;
+import com.polyv.live.enumeration.ProxyType;
 import com.polyv.live.util.HttpClientUtil;
 import com.polyv.live.util.JsonUtil;
 import com.polyv.live.util.MapUtil;
@@ -27,30 +29,71 @@ import java.util.Map;
  */
 public abstract class PLAbstractService {
 
-    protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public static final String Get_Method = HttpGet.METHOD_NAME;
+    protected static final String GET_METHOD = HttpGet.METHOD_NAME;
 
-    public static final String Post_Method = HttpPost.METHOD_NAME;
+    protected static final String POST_METHOD = HttpPost.METHOD_NAME;
 
-    public static final String Delete_Method = HttpDelete.METHOD_NAME;
+    protected static final String DELETE_METHOD = HttpDelete.METHOD_NAME;
 
-    public static final String Put_Method = HttpPut.METHOD_NAME;
+    protected static final String PUT_METHOD = HttpPut.METHOD_NAME;
+
+    protected static final String CONTENTS_TAG = "contents";
 
     /**
-     * 请求接口
+     * 代理
+     */
+    private RequestHost proxy = null;
+
+    /**
+     * 请求接口（包括v2, v3）
      * @param url    请求URL
      * @param params 请求参数集合
-     * @return
+     * @param method 请求方式
+     * @return 请求响应对象
      */
     protected WrappedResponse request(String url, Map<String, String> params, String method) {
-        HttpClientUtil client = HttpClientUtil.getInstance();
+        WrappedResponse response = requestBase(url, params, method, WrappedResponse.class);
+        if (null == response) {
+            response = new WrappedResponse(PolyvLiveConstants.CODE_400, WrappedResponse.STATUS_ERROR,
+                    PolyvLiveConstants.REQUEST_ERR_MSG, null);
+        }
+        return response;
+    }
+
+    /**
+     * 请求V1接口
+     * @param url    请求URL
+     * @param params 请求参数集合
+     * @param method 请求方式
+     * @return 请求响应对象
+     */
+    protected WrappedResponseV1 requestV1(String url, Map<String, String> params, String method) {
+        WrappedResponseV1 response = requestBase(url, params, method, WrappedResponseV1.class);
+        if (null == response) {
+            response = new WrappedResponseV1(String.valueOf(PolyvLiveConstants.CODE_400), WrappedResponseV1.STATUS_FAIL,
+                    PolyvLiveConstants.REQUEST_ERR_MSG, null);
+        }
+        return response;
+    }
+
+    /**
+     * 请求接口基础方法
+     * @param url    请求URL
+     * @param params 请求参数集合
+     * @param method 请求方式
+     * @return 请求响应对象
+     */
+    private <T> T requestBase(String url, Map<String, String> params, String method, Class<T> clazz) {
+        HttpClientUtil client = initHttpClient();
+
         String content;
-        if (Post_Method.equals(method)) {
+        if (POST_METHOD.equals(method)) {
             content = client.sendHttpPost(url, params);
-        } else if (Delete_Method.equals(method)) {
+        } else if (DELETE_METHOD.equals(method)) {
             content = client.sendHttpDelete(url, params);
-        } else if (Put_Method.equals(method)) {
+        } else if (PUT_METHOD.equals(method)) {
             content = client.sentHttpPut(url, params);
         } else {
             String paramStr = MapUtil.mapJoinNotEncode(params);
@@ -58,18 +101,26 @@ public abstract class PLAbstractService {
                 paramStr = "?" + paramStr;
             content = client.sendHttpGet(url + paramStr);
         }
-        WrappedResponse response = null;
+        T t = null;
         if (StringUtils.isNotBlank(content)) {
             try {
-                response = JsonUtil.parseObject(content, WrappedResponse.class);
+                t = JsonUtil.parseObject(content, clazz);
             } catch (Exception e) {
                 logger.error("response json cast to object occur an error，content = {}", content);
             }
         }
-        if (null == response) {
-            response = new WrappedResponse(PolyvLiveConstants.Code_400, WrappedResponse.STATUS_ERROR, PolyvLiveConstants.Request_Error_Msg, null);
+        return t;
+    }
+
+    /**
+     * 实例化HttpClient对象
+     * @return HttpClient对象
+     */
+    protected HttpClientUtil initHttpClient() {
+        if (null != proxy) {
+            return HttpClientUtil.getInstance(proxy, PolyvLiveConstants.BASE_DOMAIN);
         }
-        return response;
+        return HttpClientUtil.getInstance();
     }
 
     /**
@@ -77,11 +128,29 @@ public abstract class PLAbstractService {
      * @param response  响应对象
      * @param result    响应结果
      * @param <T>       自定义类（继承PLBaseResult类）
-     * @return
+     * @return Result对象
      */
     protected <T extends PLBaseResult> T getResult(WrappedResponse response, T result) {
         result.setCode(response.getCode());
         result.setMessage(response.getMessage());
+        result.setStatus(response.getStatus());
+        return result;
+    }
+
+    /**
+     * 把v1接口请求对象转换为Result对象
+     * @param response  响应对象
+     * @param result    响应结果
+     * @param <T>       自定义类（继承PLBaseResult类）
+     * @return Result对象
+     */
+    protected <T extends PLBaseResult> T getResult(WrappedResponseV1 response, T result) {
+        if (response.isRequestOk()) {
+            result.setCode(PolyvLiveConstants.CODE_200);
+        } else {
+            result.setCode(PolyvLiveConstants.CODE_400);
+        }
+        result.setMessage(response.getMsg());
         result.setStatus(response.getStatus());
         return result;
     }
@@ -92,9 +161,10 @@ public abstract class PLAbstractService {
      * @param urlParam  动态地址的地址参数
      * @param params    请求参数
      * @param method    请求方法
-     * @return
+     * @return 公用对象
      */
-    protected PLChannelCommonResult getPLChannelCommonResult(String url, String urlParam, Map<String, String> params, String method) {
+    protected PLChannelCommonResult getPLChannelCommonResult(String url, String urlParam, Map<String, String> params,
+                                                             String method) {
         if (StringUtils.isNotBlank(urlParam)) {
             url = PolyvLiveConstants.getRealUrl(url, urlParam);
         }
@@ -104,6 +174,77 @@ public abstract class PLAbstractService {
             result.setData(response.getData());
         }
         return this.getResult(response, result);
+    }
+
+    /**
+     * 放回公用对象时共用方法
+     * @param url       请求地址
+     * @param urlParam  动态地址的地址参数
+     * @param params    请求参数
+     * @param method    请求方法
+     * @return 公用对象
+     */
+    protected PLChannelCommonResult getPLChannelCommonResultV1(String url, String urlParam, Map<String, String> params,
+                                                             String method) {
+        if (StringUtils.isNotBlank(urlParam)) {
+            url = PolyvLiveConstants.getRealUrl(url, urlParam);
+        }
+        WrappedResponseV1 response = requestV1(url, params, method);
+        PLChannelCommonResult result = new PLChannelCommonResult();
+        if (response.isRequestOk()) {
+            result.setData(response.getResult());
+        }
+        return this.getResult(response, result);
+    }
+
+    /**
+     * <pre>
+     *  设置正向代理
+     * </pre>
+     *
+     * @param host      代理host
+     * @param port      代理端口
+     * @param scheme    http/https
+     */
+    public void initForwardProxy(String host, int port, String scheme) {
+        proxy = new RequestHost(host, port, scheme, ProxyType.FORWARD.getValue());
+    }
+
+    /**
+     * <pre>
+     *  设置反向代理(带IP地址)
+     * </pre>
+     *
+     * @param host      代理host
+     * @param port      代理端口
+     * @param ipAddress 代理IP地址
+     * @param scheme    http/https
+     */
+    public void initReverseProxy(String host, int port, String ipAddress, String scheme) {
+        proxy = new RequestHost(host, port, ipAddress, scheme, ProxyType.REVERSE.getValue());
+    }
+
+    /**
+     * <pre>
+     *  设置反向代理
+     * </pre>
+     *
+     * @param host      代理host
+     * @param port      代理端口
+     * @param scheme    http/https
+     */
+    public void initReverseProxy(String host, int port, String scheme) {
+        proxy = new RequestHost(host, port, scheme, ProxyType.REVERSE.getValue());
+    }
+
+
+    /**
+     * <pre>
+     *  销毁代理
+     * </pre>
+     */
+    public void destroyProxy() {
+        proxy = null;
     }
 
 }
