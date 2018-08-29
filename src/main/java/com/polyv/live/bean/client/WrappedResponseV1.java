@@ -86,6 +86,6 @@ public class WrappedResponseV1 implements java.io.Serializable {
     }
 
     public boolean isRequestOk() {
-        return this.status.equals(STATUS_SUCCESS);
+        return STATUS_SUCCESS.equals(this.status);
     }
 }
