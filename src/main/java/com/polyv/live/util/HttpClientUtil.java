@@ -2,6 +2,7 @@ package com.polyv.live.util;
 
 import com.polyv.live.bean.client.HttpDeleteWithBody;
 import com.polyv.live.bean.client.RequestHost;
+import com.polyv.live.constant.MarkConstants;
 import com.polyv.live.enumeration.ProxyType;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.Header;
@@ -154,6 +155,27 @@ public class HttpClientUtil {
         }
         HttpEntity reqEntity = meBuilder.build();
         httpPost.setEntity(reqEntity);
+        return sendHttpRequest(httpPost);
+    }
+
+    /**
+     * 发送 post请求
+     * @param httpUrl 地址
+     * @param maps 参数
+     * @param body 请求体
+     */
+    public String sendHttpPost(String httpUrl, Map<String, String> maps, String body) {
+        String paramStr = MapUtil.mapJoinNotEncode(maps);
+        if (StringUtils.isNotBlank(paramStr))
+            paramStr = MarkConstants.QUESTION_MARK + paramStr;
+        String urlStr = httpUrl + paramStr;
+        HttpPost httpPost = new HttpPost(urlStr);
+        try {
+            StringEntity entity = new StringEntity(body, CHARSET_UTF8);
+            httpPost.setEntity(entity);
+        } catch (Exception e) {
+            LOG.error(e.getMessage(), e);
+        }
         return sendHttpRequest(httpPost);
     }
 

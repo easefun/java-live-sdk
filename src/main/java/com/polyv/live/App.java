@@ -15,7 +15,7 @@ public class App {
     private static final Logger LOG = LoggerFactory.getLogger(App.class);
 
     public static void main(String[] args) {
-        LOG.info("Polyv Live Sdk Version -- 1.3.0");
+        LOG.info("Polyv Live Sdk Version -- 1.4.0");
     }
 
 }

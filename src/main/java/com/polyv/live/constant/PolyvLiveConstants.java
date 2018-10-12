@@ -132,6 +132,36 @@ public class PolyvLiveConstants {
     public static final String CHANNEL_LIST_URL = BASE_URI + "v3/channel/management/list";
 
     /**
+     * 获取频道菜单列表接口
+     */
+    public static final String CHANNEL_MENU_LIST_URL = BASE_URI + "v3/channel/menu/list";
+
+    /**
+     * 修改频道菜单
+     */
+    public static final String CHANNEL_MENU_UPDATE_URL = BASE_URI + "v3/channel/menu/update";
+
+    /**
+     * 查询账户分钟数
+     */
+    public static final String USER_DURATION_GET_URL = BASE_URI + "v2/user/get-user-durations";
+
+    /**
+     * 获取打赏设置
+     */
+    public static final String CHANNEL_DONATE_GET_URL = BASE_URI + "v3/channel/donate/get";
+
+    /**
+     * 道具打赏设置
+     */
+    public static final String GOOD_DONATE_SET_URL = BASE_URI + "v3/channel/donate/update-good";
+
+    /**
+     * 现金打赏设置
+     */
+    public static final String CASH_DONATE_SET_URL = BASE_URI + "v3/channel/donate/update-cash";
+
+    /**
      * 400错误码
      */
     public static final int CODE_400 = 400;

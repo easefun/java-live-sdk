@@ -137,7 +137,7 @@ public abstract class PLBaseRequest {
             String key = entry.getKey();
             String value = entry.getValue();
             if (StringUtils.isBlank(value) || key.equalsIgnoreCase("appSecret")
-                    || key.equalsIgnoreCase("sign")) {
+                    || key.equalsIgnoreCase("sign") || key.equalsIgnoreCase("requestBody")) {
                 continue;
             }
             result.put(key, value);

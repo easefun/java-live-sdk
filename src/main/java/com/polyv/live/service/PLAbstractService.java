@@ -3,8 +3,11 @@ package com.polyv.live.service;
 import com.polyv.live.bean.client.RequestHost;
 import com.polyv.live.bean.client.WrappedResponse;
 import com.polyv.live.bean.client.WrappedResponseV1;
+import com.polyv.live.bean.request.PLBaseBody;
 import com.polyv.live.bean.result.PLBaseResult;
+import com.polyv.live.bean.result.PLCommonResult;
 import com.polyv.live.bean.result.channel.PLChannelCommonResult;
+import com.polyv.live.constant.MarkConstants;
 import com.polyv.live.constant.PolyvLiveConstants;
 import com.polyv.live.enumeration.ProxyType;
 import com.polyv.live.util.HttpClientUtil;
@@ -54,7 +57,20 @@ public abstract class PLAbstractService {
      * @return 请求响应对象
      */
     protected WrappedResponse request(String url, Map<String, String> params, String method) {
-        WrappedResponse response = requestBase(url, params, method, WrappedResponse.class);
+        return request(url, params, method, null);
+    }
+
+    /**
+     * 请求接口（带请求体参数，包括v2, v3）
+     * @param url    请求URL
+     * @param params 请求参数集合
+     * @param method 请求方式
+     * @return 请求响应对象
+     */
+    protected <T extends PLBaseBody> WrappedResponse request(String url, Map<String, String> params, String method, T t) {
+        // 获取请求体json
+        String body = (null == t) ? null : t.toJson();
+        WrappedResponse response = requestBase(url, params, method, WrappedResponse.class, body);
         if (null == response) {
             response = new WrappedResponse(PolyvLiveConstants.CODE_400, WrappedResponse.STATUS_ERROR,
                     PolyvLiveConstants.REQUEST_ERR_MSG, null);
@@ -70,7 +86,7 @@ public abstract class PLAbstractService {
      * @return 请求响应对象
      */
     protected WrappedResponseV1 requestV1(String url, Map<String, String> params, String method) {
-        WrappedResponseV1 response = requestBase(url, params, method, WrappedResponseV1.class);
+        WrappedResponseV1 response = requestBase(url, params, method, WrappedResponseV1.class, null);
         if (null == response) {
             response = new WrappedResponseV1(String.valueOf(PolyvLiveConstants.CODE_400), WrappedResponseV1.STATUS_FAIL,
                     PolyvLiveConstants.REQUEST_ERR_MSG, null);
@@ -85,11 +101,13 @@ public abstract class PLAbstractService {
      * @param method 请求方式
      * @return 请求响应对象
      */
-    private <T> T requestBase(String url, Map<String, String> params, String method, Class<T> clazz) {
+    private <T> T requestBase(String url, Map<String, String> params, String method, Class<T> clazz, String body) {
         HttpClientUtil client = initHttpClient();
 
         String content;
-        if (POST_METHOD.equals(method)) {
+        if (StringUtils.isNotBlank(body) && POST_METHOD.equals(method)) { // 发送请求体POST请求
+            content = client.sendHttpPost(url, params, body);
+        } else if (POST_METHOD.equals(method)) {
             content = client.sendHttpPost(url, params);
         } else if (DELETE_METHOD.equals(method)) {
             content = client.sendHttpDelete(url, params);
@@ -98,7 +116,7 @@ public abstract class PLAbstractService {
         } else {
             String paramStr = MapUtil.mapJoinNotEncode(params);
             if (StringUtils.isNotBlank(paramStr))
-                paramStr = "?" + paramStr;
+                paramStr = MarkConstants.QUESTION_MARK + paramStr;
             content = client.sendHttpGet(url + paramStr);
         }
         T t = null;
@@ -162,7 +180,9 @@ public abstract class PLAbstractService {
      * @param params    请求参数
      * @param method    请求方法
      * @return 公用对象
+     * @deprecated
      */
+    @Deprecated
     protected PLChannelCommonResult getPLChannelCommonResult(String url, String urlParam, Map<String, String> params,
                                                              String method) {
         if (StringUtils.isNotBlank(urlParam)) {
@@ -183,14 +203,72 @@ public abstract class PLAbstractService {
      * @param params    请求参数
      * @param method    请求方法
      * @return 公用对象
+     * @deprecated
      */
+    @Deprecated
     protected PLChannelCommonResult getPLChannelCommonResultV1(String url, String urlParam, Map<String, String> params,
-                                                             String method) {
+                                                               String method) {
         if (StringUtils.isNotBlank(urlParam)) {
             url = PolyvLiveConstants.getRealUrl(url, urlParam);
         }
         WrappedResponseV1 response = requestV1(url, params, method);
         PLChannelCommonResult result = new PLChannelCommonResult();
+        if (response.isRequestOk()) {
+            result.setData(response.getResult());
+        }
+        return this.getResult(response, result);
+    }
+
+    /**
+     * 放回公用对象时共用方法
+     * @param url       请求地址
+     * @param urlParam  动态地址的地址参数
+     * @param params    请求参数
+     * @param method    请求方法
+     * @return 公用对象
+     */
+    protected PLCommonResult getPLCommonResult(String url, String urlParam, Map<String, String> params,
+                                                      String method) {
+        return getPLCommonResult(url, urlParam, params, method, null);
+    }
+
+    /**
+     * 放回公用对象时共用方法(包含请求体参数)
+     * @param url       请求地址
+     * @param urlParam  动态地址的地址参数
+     * @param params    请求参数
+     * @param method    请求方法
+     * @param t         请求体对象
+     * @return 公用对象
+     */
+    protected <T extends PLBaseBody> PLCommonResult getPLCommonResult(String url, String urlParam,
+                                                                      Map<String, String> params, String method, T t) {
+        if (StringUtils.isNotBlank(urlParam)) {
+            url = PolyvLiveConstants.getRealUrl(url, urlParam);
+        }
+        WrappedResponse response = request(url, params, method, t);
+        PLCommonResult result = new PLCommonResult();
+        if (response.isRequestOk()) {
+            result.setData(response.getData());
+        }
+        return this.getResult(response, result);
+    }
+
+    /**
+     * 放回公用对象时共用方法
+     * @param url       请求地址
+     * @param urlParam  动态地址的地址参数
+     * @param params    请求参数
+     * @param method    请求方法
+     * @return 公用对象
+     */
+    protected PLCommonResult getPLCommonResultV1(String url, String urlParam, Map<String, String> params,
+                                                               String method) {
+        if (StringUtils.isNotBlank(urlParam)) {
+            url = PolyvLiveConstants.getRealUrl(url, urlParam);
+        }
+        WrappedResponseV1 response = requestV1(url, params, method);
+        PLCommonResult result = new PLCommonResult();
         if (response.isRequestOk()) {
             result.setData(response.getResult());
         }
