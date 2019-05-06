@@ -41,16 +41,4 @@ public class EncryptionUtils {
         return encryptedStr.substring(0, 20);
     }
 
-    private static String byte2hex(byte[] b) {
-        StringBuilder hs = new StringBuilder();
-        String str;
-        for (int n = 0; n < b.length; n++) {
-            str = (Integer.toHexString(b[n] & 0XFF));
-            if (1 == str.length())
-                hs.append("0").append(str);
-            else hs.append(str);
-        }
-        return hs.toString().toUpperCase();
-    }
-
 }
