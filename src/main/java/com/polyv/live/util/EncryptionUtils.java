@@ -2,8 +2,6 @@ package com.polyv.live.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
-import java.security.MessageDigest;
-
 /**
  * <pre>
  *  加密工具类。
@@ -41,26 +39,6 @@ public class EncryptionUtils {
     public static String getLittleSHA1(String text) {
         String encryptedStr = DigestUtils.sha1Hex(text).toUpperCase();
         return encryptedStr.substring(0, 20);
-    }
-
-    /**
-     * 对字符串做SHA-1加密，返回加密后的字符串。
-     * @param text 待加密的字符串。
-     * @return 加密后的字符串。
-     */
-    public static String getSHA1(String text) {
-        return encode(text, "SHA-1");
-    }
-
-    private static String encode(String str, String type) {
-        try {
-            MessageDigest alga = MessageDigest.getInstance(type);
-            alga.update(str.getBytes("UTF-8"));
-            byte[] digest = alga.digest();
-            return byte2hex(digest);
-        } catch (Exception e) {
-            return "";
-        }
     }
 
     private static String byte2hex(byte[] b) {
