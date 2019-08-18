@@ -312,6 +312,24 @@ public class PLChannelServiceImpl extends PLAbstractService implements PLChannel
 
     /**
      * <pre>
+     * 频道获取点赞数和历史观看人数
+     * </pre>
+     *
+     * @param plChannelLikesGetRequest 获取频道点赞数和历史观看人数请求的参数对象。
+     */
+    public PLChannelLikesGetResult getLikes(PLChannelLikesGetRequest plChannelLikesGetRequest) {
+        WrappedResponse response = request(PolyvLiveConstants.CHANNEL_LIKES_GET_URL,
+                plChannelLikesGetRequest.getParams(), GET_METHOD);
+        PLChannelLikesGetResult result = new PLChannelLikesGetResult();
+        if (response.isRequestOk()) {
+            String json = JSON.toJSONString(response.getData());
+            result.setChannelLikes(JSONObject.parseArray(json, ChannelLikes.class));
+        }
+        return getResult(response, result);
+    }
+
+    /**
+     * <pre>
      * 获取频道某段时间的直播统计数据
      * </pre>
      *

@@ -162,6 +162,11 @@ public class PolyvLiveConstants {
     public static final String CASH_DONATE_SET_URL = BASE_URI + "v3/channel/donate/update-cash";
 
     /**
+     * 获取频道点赞数和历史观看人数
+     */
+    public static final String CHANNEL_LIKES_GET_URL = BASE_URI + "v2/channels/live-likes";
+
+    /**
      * 400错误码
      */
     public static final int CODE_400 = 400;

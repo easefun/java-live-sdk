@@ -4,7 +4,7 @@ import com.polyv.live.util.JsonUtil;
 
 /**
  * <pre>
- *  请求体基础对象对象
+ *  请求体基础对象
  * </pre>
  *
  * @author HuangYF

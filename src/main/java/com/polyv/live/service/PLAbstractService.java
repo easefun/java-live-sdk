@@ -65,9 +65,11 @@ public abstract class PLAbstractService {
      * @param url    请求URL
      * @param params 请求参数集合
      * @param method 请求方式
+     * @param t      请求体对象
      * @return 请求响应对象
      */
-    protected <T extends PLBaseBody> WrappedResponse request(String url, Map<String, String> params, String method, T t) {
+    protected <T extends PLBaseBody> WrappedResponse request(String url, Map<String, String> params,
+            String method, T t) {
         // 获取请求体json
         String body = (null == t) ? null : t.toJson();
         WrappedResponse response = requestBase(url, params, method, WrappedResponse.class, body);
@@ -228,7 +230,7 @@ public abstract class PLAbstractService {
      * @return 公用对象
      */
     protected PLCommonResult getPLCommonResult(String url, String urlParam, Map<String, String> params,
-                                                      String method) {
+            String method) {
         return getPLCommonResult(url, urlParam, params, method, null);
     }
 
@@ -242,7 +244,7 @@ public abstract class PLAbstractService {
      * @return 公用对象
      */
     protected <T extends PLBaseBody> PLCommonResult getPLCommonResult(String url, String urlParam,
-                                                                      Map<String, String> params, String method, T t) {
+            Map<String, String> params, String method, T t) {
         if (StringUtils.isNotBlank(urlParam)) {
             url = PolyvLiveConstants.getRealUrl(url, urlParam);
         }
