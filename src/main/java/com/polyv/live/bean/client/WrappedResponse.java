@@ -118,7 +118,10 @@ public class WrappedResponse implements java.io.Serializable {
                 ", data=" + data +
                 '}';
     }
-
+    
+    public WrappedResponse() {
+    }
+    
     public WrappedResponse(int code, String status, String message, Object data) {
         this.code = code;
         this.status = status;
