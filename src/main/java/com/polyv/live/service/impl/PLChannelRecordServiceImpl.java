@@ -44,7 +44,7 @@ public class PLChannelRecordServiceImpl extends PLAbstractService implements PLC
      * @param request 合并录制的mp4文件请求对象。
      */
     public PLChannelRecordMergeMp4Result mergeMp4(PLChannelRecordMergeMp4Request request) {
-        WrappedResponse response = request(PolyvLiveConstants.CHANNEL_RECORD_FILE_MERGE_URL,
+        WrappedResponse response = request(PolyvLiveConstants.CHANNEL_RECORD_MERGE_MP4_URL,
                 request.getParams(), POST_METHOD);
         PLChannelRecordMergeMp4Result result = new PLChannelRecordMergeMp4Result();
         if (response.isRequestOk()) {
