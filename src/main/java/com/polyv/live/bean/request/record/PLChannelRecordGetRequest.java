@@ -13,6 +13,18 @@ public class PLChannelRecordGetRequest extends PLBaseRequest {
 
     /**
      * <pre>
+     * 字段名：频道号
+     * 变量名：channelId
+     * 是否必填：是
+     * 类型：Int(11)
+     * 示例值：10001
+     * 描述：频道号
+     * </pre>
+     */
+    protected Integer channelId;
+
+    /**
+     * <pre>
      * 字段名：文件ID
      * 变量名：fileId
      * 是否必填：是
@@ -22,6 +34,14 @@ public class PLChannelRecordGetRequest extends PLBaseRequest {
      * </pre>
      */
     protected String fileId;
+
+    public Integer getChannelId() {
+        return channelId;
+    }
+
+    public void setChannelId(Integer channelId) {
+        this.channelId = channelId;
+    }
 
     public String getFileId() {
         return fileId;
@@ -38,7 +58,8 @@ public class PLChannelRecordGetRequest extends PLBaseRequest {
     @Override
     public String toString() {
         return "PLChannelRecordGetRequest{" +
-                "fileId='" + fileId + '\'' +
+                "channelId=" + channelId +
+                ", fileId='" + fileId + '\'' +
                 ", appId='" + appId + '\'' +
                 ", appSecret='" + appSecret + '\'' +
                 ", timestamp=" + timestamp +
