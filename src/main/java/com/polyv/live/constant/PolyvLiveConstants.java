@@ -167,6 +167,16 @@ public class PolyvLiveConstants {
     public static final String CHANNEL_LIKES_GET_URL = BASE_URI + "v2/channels/live-likes";
 
     /**
+     * 合并录制mp4文件接口
+     */
+    public static final String CHANNEL_RECORD_MERGE_MP4_URL = BASE_URI + "v3/channel/record/merge-mp4";
+
+    /**
+     * 通过ID获取录制信息接口
+     */
+    public static final String CHANNEL_RECORD_GET_URL = BASE_URI + "v3/channel/record/get";
+
+    /**
      * 400错误码
      */
     public static final int CODE_400 = 400;

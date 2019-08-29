@@ -290,6 +290,20 @@ public interface PLChannelService extends PLBaseService {
 
     /**
      * <pre>
+     * 频道获取点赞数和历史观看人数(详见http://dev.polyv.net/2017/liveproduct/l-api/szgkygg/ymxxsz/live-likes/)
+     * 该接口提供用户设置频道的点赞数和观看人数。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要获取频道的点赞数和观看人数用于统计；
+     * ◆ 业务需要获取频道的点赞数和观看人数用于展示；
+     * 接口地址：http://api.polyv.net/live/v2/channels/live-likes
+     * </pre>
+     *
+     * @param plChannelLikesGetRequest 获取频道点赞数和历史观看人数请求的参数对象。
+     */
+    PLChannelLikesGetResult getLikes(PLChannelLikesGetRequest plChannelLikesGetRequest);
+
+    /**
+     * <pre>
      * 获取频道某段时间的直播统计数据(详见http://dev.polyv.net/2017/liveproduct/l-api/hqzbxx/summary/)
      * 该接口提供用户获取频道某段时间的直播统计数据。
      * 需要调用该接口的情况：
