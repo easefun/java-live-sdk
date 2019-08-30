@@ -16,7 +16,7 @@ public interface PLChannelRecordService extends PLBaseService {
 
     /**
      * <pre>
-     * 通过文件ID获取录制信息详情(详见)
+     * 通过文件ID获取录制信息详情(详见http://dev.polyv.net/2019/liveproduct/l-api/zbglgn/lzhf/get-record-file/)
      * 该接口提供查下录制文件信息接口。
      * 需要调用该接口的情况：
      * ◆ 业务需要录制文件ID获取视频地址，大小等信息；
@@ -29,7 +29,7 @@ public interface PLChannelRecordService extends PLBaseService {
 
     /**
      * <pre>
-     * 合并一段时间的频道录制的mp4文件接口(详见)
+     * 合并一段时间的频道录制的mp4文件接口(详见http://dev.polyv.net/2019/liveproduct/l-api/zbglgn/lzhf/merge-record-mp4/)
      * 该接口提供用户合并MP4录制文件视频的接口。
      * 需要调用该接口的情况：
      * ◆ 业务需要合并MP4录制文件并设置一些回调通知等；
