@@ -41,4 +41,19 @@ public interface PLChannelMenuService extends PLBaseService {
      */
     PLCommonResult setMenuById(PLChannelMenuSetRequest request);
 
+    /**
+     * <pre>
+     * 设置频道自定义菜单(详见http://dev.polyv.net/2017/liveproduct/l-api/szgkygg/menu/setmenu/)
+     * 该接口提供用户设置频道自定义菜单内容的接口。
+     * 需要调用该接口的情况：
+     * ◆ 业务需要修改频道自定义菜单内容；
+     * 接口地址：http://api.polyv.net/live/v2/channelSetting/{userId}/{channelId}/set-menu
+     * </pre>
+     *
+     * @param channelId 频道ID。
+     * @param userId 用户ID。
+     * @param request 设置频道菜单的参数对象。
+     */
+    PLCommonResult setCustomMenu(int channelId, String userId, PLChannelMenuSetRequest request);
+
 }

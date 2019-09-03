@@ -49,4 +49,18 @@ public class PLChannelMenuServiceImpl extends PLAbstractService implements PLCha
         return getPLCommonResult(PolyvLiveConstants.CHANNEL_MENU_UPDATE_URL, null,
                 request.getParams(), POST_METHOD);
     }
+
+    /**
+     * <pre>
+     * 设置频道自定义菜单
+     * </pre>
+     *
+     * @param channelId 频道ID
+     * @param userId 用户ID
+     * @param request 设置频道自定义菜单的参数对象。
+     */
+    public PLCommonResult setCustomMenu(int channelId, String userId, PLChannelMenuSetRequest request) {
+        String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.CHANNEL_MENU_SET_URL, userId, channelId);
+        return getPLCommonResult(url, null, request.getParams(), POST_METHOD);
+    }
 }
