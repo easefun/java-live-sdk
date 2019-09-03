@@ -1,8 +1,6 @@
 package com.polyv.live.service;
 
-import com.polyv.live.bean.request.channel.PLChannelBasicCreateBody;
 import com.polyv.live.bean.request.channel.PLChannelBasicCreateRequest;
-import com.polyv.live.bean.request.channel.PLChannelBasicUpdateBody;
 import com.polyv.live.bean.request.channel.PLChannelBasicUpdateRequest;
 import com.polyv.live.bean.result.channel.PLChannelCommonResult;
 
@@ -18,9 +16,8 @@ public interface PLChannelBasicService {
      * </pre>
      *
      * @param request 创建频道需要的参数对象。
-     * @param body 创建json对象
      */
-    PLChannelCommonResult createChannel(PLChannelBasicCreateRequest request, PLChannelBasicCreateBody body);
+    PLChannelCommonResult createChannel(PLChannelBasicCreateRequest request);
     
     /**
      * <pre>
@@ -32,7 +29,6 @@ public interface PLChannelBasicService {
      * </pre>
      *
      * @param request 创建频道需要的参数对象。
-     * @param body    更新json对象
      */
-    PLChannelCommonResult updateChannel(PLChannelBasicUpdateRequest request, PLChannelBasicUpdateBody body);
+    PLChannelCommonResult updateChannel(PLChannelBasicUpdateRequest request);
 }
