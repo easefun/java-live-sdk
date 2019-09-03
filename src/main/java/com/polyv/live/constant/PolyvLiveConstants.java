@@ -194,7 +194,17 @@ public class PolyvLiveConstants {
      * 通过ID获取录制信息接口
      */
     public static final String CHANNEL_RECORD_GET_URL = BASE_URI + "v3/channel/record/get";
-
+    
+    /**
+     * 创建频道号，可选频道设置参数
+     */
+    public static final String CHANNEL_BASIC_CREATE_URL = BASE_URI + "v3/channel/basic/create";
+    
+    /**
+     * 更新频道信息，可选频道的设置参数
+     */
+    public static final String CHANNEL_BASIC_UPDATE_URL = BASE_URI + "v3/channel/basic/update";
+    
     /**
      * 频道禁流接口
      */
