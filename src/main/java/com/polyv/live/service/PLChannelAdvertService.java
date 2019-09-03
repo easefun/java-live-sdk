@@ -25,6 +25,6 @@ public interface PLChannelAdvertService extends PLBaseService {
      *
      * @param request   获取频道的广告列表的参数对象。
      */
-    PLCommonListResult<ChannelAdvert> getAccounts(PLChannelAdvertListGetRequest request);
+    PLCommonListResult<ChannelAdvert> getAdvertList(PLChannelAdvertListGetRequest request);
 
 }

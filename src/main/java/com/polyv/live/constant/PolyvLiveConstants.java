@@ -216,6 +216,11 @@ public class PolyvLiveConstants {
     public static final String CHANNEL_STREAM_RESUME_URL = BASE_URI + "v2/stream/" + PARAM_REPLACE_CHAR + "/resume";
 
     /**
+     * 添加轮播广告列表接口
+     */
+    public static final String CHANNEL_ADVERT_LIST_GET_URL = BASE_URI + "v3/channel/advert/list";
+
+    /**
      * 获取频道下面的所有子频道
      */
     public static final String CHANNEL_ACCOUNTS_GET_URL = BASE_URI
