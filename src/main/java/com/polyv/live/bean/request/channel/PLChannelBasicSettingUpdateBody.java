@@ -1,5 +1,12 @@
 package com.polyv.live.bean.request.channel;
 
+/**
+ * <pre>
+ *  POLYV更新频道基本设置body对象
+ * </pre>
+ *
+ * @author moshunwei
+ */
 public class PLChannelBasicSettingUpdateBody {
     
     /**

@@ -18,8 +18,15 @@ import com.polyv.live.service.PLChannelBasicService;
  * @author moshunwei
  */
 public class PLChannelBasicServiceImpl extends PLAbstractService implements PLChannelBasicService {
-    
-    @Override
+
+    /**
+     * <pre>
+     * 创建频道
+     * </pre>
+     *
+     * @param request 创建频道需要的参数对象。
+     * @param body    创建json对象
+     */
     public PLChannelCommonResult createChannel(PLChannelBasicCreateRequest request, PLChannelBasicCreateBody body) {
         WrappedResponse response = request(PolyvLiveConstants.CHANNEL_BASIC_CREATE_URL, request.getParams(), POST_METHOD, body);
         PLChannelCommonResult result = new PLChannelCommonResult();
@@ -28,8 +35,15 @@ public class PLChannelBasicServiceImpl extends PLAbstractService implements PLCh
         }
         return this.getResult(response, result);
     }
-    
-    @Override
+
+    /**
+     * <pre>
+     * 创建频道
+     * </pre>
+     *
+     * @param request 创建频道需要的参数对象。
+     * @param body    更新json对象
+     */
     public PLChannelCommonResult updateChannel(PLChannelBasicUpdateRequest request, PLChannelBasicUpdateBody body) {
         WrappedResponse response = request(PolyvLiveConstants.CHANNEL_BASIC_UPDATE_URL, request.getParams(), POST_METHOD, body);
         PLChannelCommonResult result = new PLChannelCommonResult();

@@ -24,7 +24,7 @@ public interface PLChannelBasicService {
     
     /**
      * <pre>
-     * 创建频道(详见http://dev.polyv.net/2019/uncategorized/update-channel-detail-setting/)
+     * 更新频道(详见http://dev.polyv.net/2019/uncategorized/update-channel-detail-setting/)
      * 该接口提供用户更新账号下的频道。
      * 需要调用该接口的情况：
      * ◆ 业务需要更新频道信息；
@@ -32,7 +32,7 @@ public interface PLChannelBasicService {
      * </pre>
      *
      * @param request 创建频道需要的参数对象。
-     * @param body 更新json对象
+     * @param body    更新json对象
      */
     PLChannelCommonResult updateChannel(PLChannelBasicUpdateRequest request, PLChannelBasicUpdateBody body);
 }
