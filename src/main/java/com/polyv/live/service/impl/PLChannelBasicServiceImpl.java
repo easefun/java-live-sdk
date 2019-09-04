@@ -1,8 +1,11 @@
 package com.polyv.live.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.polyv.live.bean.client.WrappedResponse;
 import com.polyv.live.bean.request.channel.PLChannelBasicCreateRequest;
 import com.polyv.live.bean.request.channel.PLChannelBasicUpdateRequest;
+import com.polyv.live.bean.result.channel.PLChannelBasicCreateResult;
 import com.polyv.live.bean.result.channel.PLChannelCommonResult;
 import com.polyv.live.constant.PolyvLiveConstants;
 import com.polyv.live.service.PLAbstractService;
@@ -24,11 +27,11 @@ public class PLChannelBasicServiceImpl extends PLAbstractService implements PLCh
      *
      * @param request 创建频道需要的参数对象。
      */
-    public PLChannelCommonResult createChannel(PLChannelBasicCreateRequest request) {
+    public PLChannelBasicCreateResult createChannel(PLChannelBasicCreateRequest request) {
         WrappedResponse response = request(PolyvLiveConstants.CHANNEL_BASIC_CREATE_URL, request.getParams(), POST_METHOD, request.getRequestBody());
-        PLChannelCommonResult result = new PLChannelCommonResult();
+        PLChannelBasicCreateResult result = new PLChannelBasicCreateResult();
         if (response.isRequestOk()) {
-            result.setData(response.getData());
+            result = JSONArray.toJavaObject((JSONObject)response.getData(), PLChannelBasicCreateResult.class);
         }
         return this.getResult(response, result);
     }
