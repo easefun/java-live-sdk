@@ -1,5 +1,6 @@
 package com.polyv.live.service;
 
+import com.polyv.live.bean.request.menu.PLChannelCustomMenuSetRequest;
 import com.polyv.live.bean.request.menu.PLChannelMenuListGetRequest;
 import com.polyv.live.bean.request.menu.PLChannelMenuSetRequest;
 import com.polyv.live.bean.result.PLCommonListResult;
@@ -54,6 +55,6 @@ public interface PLChannelMenuService extends PLBaseService {
      * @param userId 用户ID。
      * @param request 设置频道菜单的参数对象。
      */
-    PLCommonResult setCustomMenu(int channelId, String userId, PLChannelMenuSetRequest request);
+    PLCommonResult setCustomMenu(int channelId, String userId, PLChannelCustomMenuSetRequest request);
 
 }

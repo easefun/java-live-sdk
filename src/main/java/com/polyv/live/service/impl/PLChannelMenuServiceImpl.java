@@ -3,6 +3,7 @@ package com.polyv.live.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.polyv.live.bean.client.WrappedResponse;
+import com.polyv.live.bean.request.menu.PLChannelCustomMenuSetRequest;
 import com.polyv.live.bean.request.menu.PLChannelMenuListGetRequest;
 import com.polyv.live.bean.request.menu.PLChannelMenuSetRequest;
 import com.polyv.live.bean.result.PLCommonListResult;
@@ -59,7 +60,7 @@ public class PLChannelMenuServiceImpl extends PLAbstractService implements PLCha
      * @param userId 用户ID
      * @param request 设置频道自定义菜单的参数对象。
      */
-    public PLCommonResult setCustomMenu(int channelId, String userId, PLChannelMenuSetRequest request) {
+    public PLCommonResult setCustomMenu(int channelId, String userId, PLChannelCustomMenuSetRequest request) {
         String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.CHANNEL_MENU_SET_URL, userId, channelId);
         return getPLCommonResult(url, null, request.getParams(), POST_METHOD);
     }
