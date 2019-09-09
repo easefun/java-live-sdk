@@ -58,6 +58,8 @@ public class PLDonateGoodsSetRequest extends PLBaseRequest {
      * 带参数的打赏的构造函数
      * @param channelId 频道ID
      * @param goods 道具打赏列表
+     * @param appId 应用ID
+     * @param appSecret 应用secret
      */
     public PLDonateGoodsSetRequest(String appId, String appSecret, Integer channelId, List<DonateGoods> goods) {
         super(appId, appSecret);
@@ -68,6 +70,8 @@ public class PLDonateGoodsSetRequest extends PLBaseRequest {
     /**
      * 带参数的打赏的构造函数
      * @param goods 道具打赏列表
+     * @param appId 应用ID
+     * @param appSecret 应用secret
      */
     public PLDonateGoodsSetRequest(String appId, String appSecret, List<DonateGoods> goods) {
         super(appId, appSecret);
@@ -79,6 +83,8 @@ public class PLDonateGoodsSetRequest extends PLBaseRequest {
      * @param channelId 频道ID
      * @param goods 道具打赏列表
      * @param enabled 开关
+     * @param appId 应用ID
+     * @param appSecret 应用secret
      */
     public PLDonateGoodsSetRequest(String appId, String appSecret, Integer channelId, List<DonateGoods> goods,
                                    String enabled) {
@@ -91,6 +97,8 @@ public class PLDonateGoodsSetRequest extends PLBaseRequest {
      * 带参数的打赏的构造函数
      * @param goods 道具打赏列表
      * @param enabled 开关
+     * @param appId 应用ID
+     * @param appSecret 应用secret
      */
     public PLDonateGoodsSetRequest(String appId, String appSecret, List<DonateGoods> goods, String enabled) {
         super(appId, appSecret);

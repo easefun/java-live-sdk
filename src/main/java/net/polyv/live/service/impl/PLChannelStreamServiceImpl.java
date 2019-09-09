@@ -22,6 +22,7 @@ public class PLChannelStreamServiceImpl extends PLAbstractService implements PLC
      *
      * @param channelId 频道ID
      * @param request   频道流公共的参数对象。
+     * @return 公共结果对象
      */
     public PLCommonResult cutoff(int channelId, PLChannelStreamCommonRequest request) {
         String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.CHANNEL_STREAM_CUTOFF_URL, channelId);
@@ -32,8 +33,10 @@ public class PLChannelStreamServiceImpl extends PLAbstractService implements PLC
      * <pre>
      * 频道恢复流接口
      * </pre>
+     *
      * @param channelId 频道ID
      * @param request   频道流公共的参数对象。
+     * @return 公共结果对象
      */
     public PLCommonResult resume(int channelId, PLChannelStreamCommonRequest request) {
         String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.CHANNEL_STREAM_RESUME_URL, channelId);

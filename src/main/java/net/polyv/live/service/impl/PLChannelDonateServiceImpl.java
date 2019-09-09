@@ -27,6 +27,7 @@ public class PLChannelDonateServiceImpl extends PLAbstractService implements PLC
      * </pre>
      *
      * @param request 获取频道打赏设置的参数对象。
+     * @return 频道打赏结果对象
      */
     public PLChannelDonateGetResult getDonateSetting(PLChannelDonateGetRequest request) {
         WrappedResponse response = request(PolyvLiveConstants.CHANNEL_DONATE_GET_URL, request.getParams(), GET_METHOD);
@@ -43,6 +44,7 @@ public class PLChannelDonateServiceImpl extends PLAbstractService implements PLC
      * </pre>
      *
      * @param request 设置频道现金打赏的参数对象。
+     * @return 公共结果对象
      */
     public PLCommonResult setDonateCash(PLDonateCashSetRequest request) {
         return getPLCommonResult(PolyvLiveConstants.CASH_DONATE_SET_URL, null,
@@ -55,6 +57,7 @@ public class PLChannelDonateServiceImpl extends PLAbstractService implements PLC
      * </pre>
      *
      * @param request 设置频道道具打赏的参数对象。
+     * @return 公共结果对象
      */
     public PLCommonResult setDonateGoods(PLDonateGoodsSetRequest request) {
         return getPLCommonResult(PolyvLiveConstants.GOOD_DONATE_SET_URL, null,

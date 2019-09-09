@@ -26,6 +26,7 @@ public class PLChannelAccountServiceImpl extends PLAbstractService implements PL
      *
      * @param channelId 频道号
      * @param request   获取频道的子频道列表的参数对象。
+     * @return 子账号列表对象
      */
     public PLCommonListResult<ChannelAccount> getAccounts(int channelId, PLChannelAccountsGetRequest request) {
         String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.CHANNEL_ACCOUNTS_GET_URL, channelId);

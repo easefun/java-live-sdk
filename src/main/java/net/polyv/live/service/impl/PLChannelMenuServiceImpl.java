@@ -28,6 +28,7 @@ public class PLChannelMenuServiceImpl extends PLAbstractService implements PLCha
      * </pre>
      *
      * @param request 获取频道菜单列表的参数对象。
+     * @return 公共结果对象
      */
     public PLCommonListResult<ChannelMenu> getMenus(PLChannelMenuListGetRequest request) {
         WrappedResponse response = request(PolyvLiveConstants.CHANNEL_MENU_LIST_URL, request.getParams(), GET_METHOD);
@@ -45,6 +46,7 @@ public class PLChannelMenuServiceImpl extends PLAbstractService implements PLCha
      * </pre>
      *
      * @param request 设置频道菜单的参数对象。
+     * @return 公共结果对象
      */
     public PLCommonResult setMenuById(PLChannelMenuSetRequest request) {
         return getPLCommonResult(PolyvLiveConstants.CHANNEL_MENU_UPDATE_URL, null,
@@ -59,6 +61,7 @@ public class PLChannelMenuServiceImpl extends PLAbstractService implements PLCha
      * @param channelId 频道ID
      * @param userId 用户ID
      * @param request 设置频道自定义菜单的参数对象。
+     * @return 公共结果对象
      */
     public PLCommonResult setCustomMenu(int channelId, String userId, PLChannelCustomMenuSetRequest request) {
         String url = PolyvLiveConstants.getRealUrl(PolyvLiveConstants.CHANNEL_MENU_SET_URL, userId, channelId);

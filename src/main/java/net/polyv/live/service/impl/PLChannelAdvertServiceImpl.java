@@ -25,6 +25,7 @@ public class PLChannelAdvertServiceImpl extends PLAbstractService implements PLC
      * </pre>
      *
      * @param request 获取频道的广告列表的参数对象。
+     * @return 广告列表对象
      */
     public PLCommonListResult<ChannelAdvert> getAdvertList(PLChannelAdvertListGetRequest request) {
         WrappedResponse response = request(PolyvLiveConstants.CHANNEL_ADVERT_LIST_GET_URL,

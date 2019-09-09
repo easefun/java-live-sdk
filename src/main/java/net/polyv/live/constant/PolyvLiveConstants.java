@@ -248,6 +248,9 @@ public class PolyvLiveConstants {
 
     /**
      * 获取替换参数后的URL地址
+     * @param format 格式化
+     * @param param  格式参数
+     * @return 格式化后字符串
      */
     public static String getRealUrl(String format, Object... param) {
         return String.format(format, param);

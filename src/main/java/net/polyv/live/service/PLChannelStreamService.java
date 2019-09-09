@@ -23,6 +23,7 @@ public interface PLChannelStreamService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param request 频道流公共的参数对象。
+     * @return 公共结果对象
      */
     PLCommonResult cutoff(int channelId, PLChannelStreamCommonRequest request);
 
@@ -37,6 +38,7 @@ public interface PLChannelStreamService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param request   频道流公共的参数对象。
+     * @return 公共结果对象
      */
     PLCommonResult resume(int channelId, PLChannelStreamCommonRequest request);
 

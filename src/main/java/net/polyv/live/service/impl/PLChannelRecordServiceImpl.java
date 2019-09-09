@@ -26,6 +26,7 @@ public class PLChannelRecordServiceImpl extends PLAbstractService implements PLC
      * </pre>
      *
      * @param request 文件ID获取录制信息请求对象。
+     * @return 获取频道录制信息结果
      */
     public PLChannelRecordGetResult get(PLChannelRecordGetRequest request) {
         WrappedResponse response = request(PolyvLiveConstants.CHANNEL_RECORD_GET_URL, request.getParams(), GET_METHOD);
@@ -42,6 +43,7 @@ public class PLChannelRecordServiceImpl extends PLAbstractService implements PLC
      * </pre>
      *
      * @param request 合并录制的mp4文件请求对象。
+     * @return 获取频道合并mp4对象结果
      */
     public PLChannelRecordMergeMp4Result mergeMp4(PLChannelRecordMergeMp4Request request) {
         WrappedResponse response = request(PolyvLiveConstants.CHANNEL_RECORD_MERGE_MP4_URL,

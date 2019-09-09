@@ -17,6 +17,7 @@ public interface PLChannelBasicService {
      * </pre>
      *
      * @param request 创建频道需要的参数对象。
+     * @return 创建基础频道结果对象
      */
     PLChannelBasicCreateResult createChannel(PLChannelBasicCreateRequest request);
     
@@ -30,6 +31,7 @@ public interface PLChannelBasicService {
      * </pre>
      *
      * @param request 创建频道需要的参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult updateChannel(PLChannelBasicUpdateRequest request);
 }

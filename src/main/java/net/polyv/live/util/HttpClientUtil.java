@@ -80,6 +80,7 @@ public class HttpClientUtil {
     /**
      * 发送 post请求
      * @param httpUrl 地址
+     * @return 请求结果
      */
     public String sendHttpPost(String httpUrl) {
         HttpPost httpPost = new HttpPost(httpUrl);
@@ -89,7 +90,8 @@ public class HttpClientUtil {
     /**
      * 发送 post请求
      * @param httpUrl 地址
-     * @param params 参数(格式:key1=value1&key2=value2)
+     * @param params 参数(格式:{@code key1=value1&key2=value2})
+     * @return 请求结果
      */
     public String sendHttpPost(String httpUrl, String params) {
         HttpPost httpPost = new HttpPost(httpUrl);
@@ -108,7 +110,8 @@ public class HttpClientUtil {
      * 发送 post请求
      * @param httpUrl 地址
      * @param headers 请求头
-     * @param params 参数(格式:key1=value1&key2=value2)
+     * @param params 参数(格式:{@code key1=value1&key2=value2})
+     * @return 请求结果
      */
     public String sendHttpPostWithHeader(String httpUrl, String params, Header[] headers) {
         HttpPost httpPost = new HttpPost(httpUrl);
@@ -128,6 +131,7 @@ public class HttpClientUtil {
      * 发送 post请求
      * @param httpUrl 地址
      * @param maps 参数
+     * @return 请求结果
      */
     public String sendHttpPost(String httpUrl, Map<String, String> maps) {
         HttpPost httpPost = new HttpPost(httpUrl);
@@ -142,6 +146,7 @@ public class HttpClientUtil {
      * @param httpUrl 地址
      * @param maps 参数
      * @param fileLists 附件
+     * @return 请求结果
      */
     public String sendHttpPost(String httpUrl, Map<String, String> maps, List<File> fileLists) {
         HttpPost httpPost = new HttpPost(httpUrl);
@@ -163,6 +168,7 @@ public class HttpClientUtil {
      * @param httpUrl 地址
      * @param maps 参数
      * @param body 请求体
+     * @return 请求结果
      */
     public String sendHttpPost(String httpUrl, Map<String, String> maps, String body) {
         String paramStr = MapUtil.mapJoinNotEncode(maps);
@@ -181,6 +187,7 @@ public class HttpClientUtil {
 
     /**
      * 发送 get请求
+     * @param httpUrl 请求地址
      * @return 成功时为响应内容，失败时为 null
      */
     public String sendHttpGet(String httpUrl) {
@@ -190,6 +197,9 @@ public class HttpClientUtil {
 
     /**
      * 发送http delete请求
+     * @param httpUrl 地址
+     * @param maps 参数
+     * @return 请求结果
      */
     public String sendHttpDelete(String httpUrl, Map<String, String> maps) {
         HttpDeleteWithBody httpDelete = new HttpDeleteWithBody(httpUrl);
@@ -201,6 +211,8 @@ public class HttpClientUtil {
 
     /**
      * 生成UrlEncodedFormEntity
+     * @param maps 请求参数
+     * @return encodedEntity对象
      */
     private UrlEncodedFormEntity getNameValuePair(Map<String, String> maps) {
         try {
@@ -218,6 +230,9 @@ public class HttpClientUtil {
 
     /**
      * 发送http put请求
+     * @param httpUrl 地址
+     * @param maps 参数
+     * @return 请求结果
      */
     public String sentHttpPut(String httpUrl, Map<String, String> maps) {
         HttpPut httpPut = new HttpPut(httpUrl);
@@ -233,6 +248,7 @@ public class HttpClientUtil {
 
     /**
      * 发送Request请求
+     * @param httpRequest 请求对象
      * @return 成功时为响应内容，失败时为 null
      */
     private String sendHttpRequest(HttpRequestBase httpRequest) {
@@ -277,6 +293,8 @@ public class HttpClientUtil {
 
     /**
      * 在请求中设置代理
+     * @param httpRequest 请求对象
+     * @return true/false
      */
     private boolean setProxyToRequest(HttpRequestBase httpRequest) {
         if (ProxyType.FORWARD.getValue().equals(requestHost.getProxyType())) {

@@ -24,6 +24,7 @@ public interface PLChannelAccountService extends PLBaseService {
      *
      * @param channelId 频道号
      * @param request   获取频道的子频道列表的参数对象。
+     * @return 子账号列表对象
      */
     PLCommonListResult<ChannelAccount> getAccounts(int channelId, PLChannelAccountsGetRequest request);
 

@@ -58,6 +58,8 @@ public class PLDonateCashSetRequest extends PLBaseRequest {
      * @param channelId 频道ID
      * @param cashes 现金打赏金额列表
      * @param cashMin 最新金额
+     * @param appId 应用ID
+     * @param appSecret 应用secret
      */
     public PLDonateCashSetRequest(String appId, String appSecret, Integer channelId, List<Double> cashes,
                                   Double cashMin) {
@@ -72,6 +74,8 @@ public class PLDonateCashSetRequest extends PLBaseRequest {
      * @param cashes 现金打赏金额列表
      * @param cashMin 最新金额
      * @param enabled 开关
+     * @param appId 应用ID
+     * @param appSecret 应用secret
      */
     public PLDonateCashSetRequest(String appId, String appSecret, Integer channelId, List<Double> cashes,
                                   Double cashMin, String enabled) {
@@ -84,6 +88,8 @@ public class PLDonateCashSetRequest extends PLBaseRequest {
      * 带参数的打赏的构造函数
      * @param cashes 现金打赏金额列表
      * @param cashMin 最新金额
+     * @param appId 应用ID
+     * @param appSecret 应用secret
      */
     public PLDonateCashSetRequest(String appId, String appSecret, List<Double> cashes, Double cashMin) {
         super(appId, appSecret);
@@ -95,6 +101,8 @@ public class PLDonateCashSetRequest extends PLBaseRequest {
      * @param cashes 现金打赏金额列表
      * @param cashMin 最新金额
      * @param enabled 开关
+     * @param appId 应用ID
+     * @param appSecret 应用secret
      */
     public PLDonateCashSetRequest(String appId, String appSecret, List<Double> cashes, Double cashMin,
                                   String enabled) {

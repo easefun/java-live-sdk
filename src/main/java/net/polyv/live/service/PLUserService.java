@@ -22,6 +22,7 @@ public interface PLUserService extends PLBaseService {
      * </pre>
      *
      * @param request 获取用户分钟数的参数对象。
+     * @return 获取用户分钟数结果对象
      */
     PLUserDurationsGetResult getDurations(PLUserDurationsGetRequest request);
 

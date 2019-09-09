@@ -103,6 +103,7 @@ public abstract class PLBaseRequest {
 
     /**
      * 获取请求参数集合Map
+     * @return 参数map
      */
     public Map<String, String> getParams() {
         Map<String, String> pMap = MapUtil.objectToMap(this);
@@ -114,6 +115,7 @@ public abstract class PLBaseRequest {
 
     /**
      * 通过map获取加密串
+     * @param params 参数map
      * @return 返回加密串
      */
     private String generateSign(Map<String, String> params) {

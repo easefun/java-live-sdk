@@ -38,6 +38,8 @@ public class PLChannelDonateGetRequest extends PLBaseRequest {
     /**
      * 带参数的打赏的构造函数
      * @param channelId 频道ID
+     * @param appId 应用ID
+     * @param appSecret 应用secret
      */
     public PLChannelDonateGetRequest(String appId, String appSecret, Integer channelId) {
         super(appId, appSecret);

@@ -25,6 +25,7 @@ public interface PLChannelDonateService extends PLBaseService {
      * </pre>
      *
      * @param request 获取频道打赏设置的参数对象。
+     * @return 频道打赏结果对象
      */
     PLChannelDonateGetResult getDonateSetting(PLChannelDonateGetRequest request);
 
@@ -38,6 +39,7 @@ public interface PLChannelDonateService extends PLBaseService {
      * </pre>
      *
      * @param request 设置频道现金打赏的参数对象。
+     * @return 公共结果对象
      */
     PLCommonResult setDonateCash(PLDonateCashSetRequest request);
 
@@ -51,6 +53,7 @@ public interface PLChannelDonateService extends PLBaseService {
      * </pre>
      *
      * @param request 设置频道道具打赏的参数对象。
+     * @return 公共结果对象
      */
     PLCommonResult setDonateGoods(PLDonateGoodsSetRequest request);
 

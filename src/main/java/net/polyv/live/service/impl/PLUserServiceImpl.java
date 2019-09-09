@@ -24,6 +24,7 @@ public class PLUserServiceImpl extends PLAbstractService implements PLUserServic
      * </pre>
      *
      * @param request 获取用户分钟数的参数对象。
+     * @return 获取用户分钟数结果对象
      */
     public PLUserDurationsGetResult getDurations(PLUserDurationsGetRequest request) {
         WrappedResponse response = request(PolyvLiveConstants.USER_DURATION_GET_URL, request.getParams(), GET_METHOD);

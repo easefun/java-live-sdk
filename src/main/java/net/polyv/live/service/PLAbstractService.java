@@ -66,6 +66,7 @@ public abstract class PLAbstractService {
      * @param params 请求参数集合
      * @param method 请求方式
      * @param t      请求体对象
+     * @param <T> 类型
      * @return 请求响应对象
      */
     protected <T extends PLBaseBody> WrappedResponse request(String url, Map<String, String> params,
@@ -101,6 +102,7 @@ public abstract class PLAbstractService {
      * @param url    请求URL
      * @param params 请求参数集合
      * @param method 请求方式
+     * @param <T>    类型
      * @return 请求响应对象
      */
     private <T> T requestBase(String url, Map<String, String> params, String method, Class<T> clazz, String body) {
@@ -241,6 +243,7 @@ public abstract class PLAbstractService {
      * @param params    请求参数
      * @param method    请求方法
      * @param t         请求体对象
+     * @param <T>       类型
      * @return 公用对象
      */
     protected <T extends PLBaseBody> PLCommonResult getPLCommonResult(String url, String urlParam,

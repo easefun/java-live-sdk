@@ -26,6 +26,7 @@ public interface PLChannelMenuService extends PLBaseService {
      * </pre>
      *
      * @param request 获取频道菜单列表的参数对象。
+     * @return 频道菜单列表结果对象
      */
     PLCommonListResult<ChannelMenu> getMenus(PLChannelMenuListGetRequest request);
 
@@ -39,6 +40,7 @@ public interface PLChannelMenuService extends PLBaseService {
      * </pre>
      *
      * @param request 设置频道菜单的参数对象。
+     * @return 公共结果对象
      */
     PLCommonResult setMenuById(PLChannelMenuSetRequest request);
 
@@ -54,6 +56,7 @@ public interface PLChannelMenuService extends PLBaseService {
      * @param channelId 频道ID。
      * @param userId 用户ID。
      * @param request 设置频道菜单的参数对象。
+     * @return 公共结果对象
      */
     PLCommonResult setCustomMenu(int channelId, String userId, PLChannelCustomMenuSetRequest request);
 

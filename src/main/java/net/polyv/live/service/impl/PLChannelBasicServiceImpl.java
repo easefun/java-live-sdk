@@ -26,6 +26,7 @@ public class PLChannelBasicServiceImpl extends PLAbstractService implements PLCh
      * </pre>
      *
      * @param request 创建频道需要的参数对象。
+     * @return 创建基础频道结果对象
      */
     public PLChannelBasicCreateResult createChannel(PLChannelBasicCreateRequest request) {
         WrappedResponse response = request(PolyvLiveConstants.CHANNEL_BASIC_CREATE_URL, request.getParams(), POST_METHOD, request.getRequestBody());
@@ -42,6 +43,7 @@ public class PLChannelBasicServiceImpl extends PLAbstractService implements PLCh
      * </pre>
      *
      * @param request 创建频道需要的参数对象。
+     * @return 频道公共结果对象
      */
     public PLChannelCommonResult updateChannel(PLChannelBasicUpdateRequest request) {
         WrappedResponse response = request(PolyvLiveConstants.CHANNEL_BASIC_UPDATE_URL, request.getParams(), POST_METHOD, request.getRequestBody());

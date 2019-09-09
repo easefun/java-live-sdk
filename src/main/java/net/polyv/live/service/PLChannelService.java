@@ -52,6 +52,7 @@ public interface PLChannelService extends PLBaseService {
      * </pre>
      *
      * @param plChannelCreateRequest 创建频道需要的参数对象。
+     * @return 创建频道结果对象
      */
     PLChannelCreateResult createChannel(PLChannelCreateRequest plChannelCreateRequest);
 
@@ -67,6 +68,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelMaxViewerSetRequest 设置频道最大在线人数的请求对象
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult setChannelMaxViewer(int channelId, PLChannelMaxViewerSetRequest plChannelMaxViewerSetRequest);
 
@@ -82,6 +84,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelNameSetRequest 修改频道频道名称需要的参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult setChannelName(int channelId, PLChannelNameSetRequest plChannelNameSetRequest);
 
@@ -97,6 +100,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param userId 用户ID
      * @param plChannelPublisherSetRequest 修改频道频道主持人需要的参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult setChannelPublisher(String userId, PLChannelPublisherSetRequest plChannelPublisherSetRequest);
 
@@ -112,6 +116,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelDeleteRequest 删除频道的参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult deleteChannel(int channelId, PLChannelDeleteRequest plChannelDeleteRequest);
 
@@ -127,6 +132,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param userId 用户ID
      * @param plChannelPasswordSetRequest 设置频道密码参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult setChannelPassword(String userId, PLChannelPasswordSetRequest plChannelPasswordSetRequest);
 
@@ -142,6 +148,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param userId 用户ID
      * @param plChannelPlaybackSetRequest 设置频道回放开关参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult setChannelPlayback(String userId, PLChannelPlaybackSetRequest plChannelPlaybackSetRequest);
 
@@ -157,6 +164,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param userId 用户ID
      * @param plChannelSummaryListGetRequest 获取频道汇总统计的播放数据的参数对象。
+     * @return 频道汇总统计列表结果对象
      */
     PLChannelSummaryListGetResult getChannelSummaryList(String userId, PLChannelSummaryListGetRequest plChannelSummaryListGetRequest);
 
@@ -173,6 +181,7 @@ public interface PLChannelService extends PLBaseService {
      * </pre>
      *
      * @param stream 流名（可调用获取频道信息接口，获取stream字段的值）
+     * @return 直播状态
      */
     String getChannelLiveStatus(String stream);
 
@@ -187,6 +196,7 @@ public interface PLChannelService extends PLBaseService {
      * </pre>
      *
      * @param plChannelViewersGetRequest 获取多个频道实时在线人数的参数对象。
+     * @return 获取频道观众列表结果对象
      */
     PLChannelViewersGetResult getChannelViewers(PLChannelViewersGetRequest plChannelViewersGetRequest);
 
@@ -202,6 +212,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelViewLogsGetRequest 获取用户获取频道观看分页日志信息的参数对象。
+     * @return 频道观看日志列表结果对象
      */
     PLChannelViewLogsGetResult getChannelViewLogs(int channelId, PLChannelViewLogsGetRequest plChannelViewLogsGetRequest);
 
@@ -216,6 +227,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelGetRequest 获取频道信息的参数对象。
+     * @return 频道信息结果对象
      */
     PLChannelGetResult getChannel(int channelId, PLChannelGetRequest plChannelGetRequest);
 
@@ -230,6 +242,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelRecordFilesGetRequest 获取用户获取频道录制文件请求的参数对象。
+     * @return 频道录制文件列表结果对象
      */
     PLChannelRecordFilesGetResult getChannelRecordFiles(int channelId, PLChannelRecordFilesGetRequest plChannelRecordFilesGetRequest);
 
@@ -244,6 +257,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelRecordFileConvertRequest 录制文件转存请求的参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult convertChannelRecords(int channelId, PLChannelRecordFileConvertRequest plChannelRecordFileConvertRequest);
 
@@ -259,6 +273,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelPlaybackListGetRequest 回放列表请求的参数对象。
+     * @return 频道回放列表结果对象
      */
     PLChannelPlaybackListGetResult getChannelPlaybacks(int channelId, PLChannelPlaybackListGetRequest plChannelPlaybackListGetRequest);
 
@@ -273,6 +288,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelPlaybackSetDefaultRequest 设置默认回放视频的请求的参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult setPlaybackListDefault(int channelId, PLChannelPlaybackSetDefaultRequest plChannelPlaybackSetDefaultRequest);
 
@@ -287,6 +303,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelPlaybackDeleteRequest 删除回放视频请求的参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult deletePlaybackVideo(int channelId, PLChannelPlaybackDeleteRequest plChannelPlaybackDeleteRequest);
 
@@ -301,6 +318,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelRecordFileMergeRequest 录制文件合并请求的参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult mergeChannelRecords(int channelId, PLChannelRecordFileMergeRequest plChannelRecordFileMergeRequest);
 
@@ -315,6 +333,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelLikesUpdateRequest 设置点赞数和观看人数请求的参数对象。
+     * @return 频道公共结果对象
      */
     PLChannelCommonResult updateLikes(int channelId, PLChannelLikesUpdateRequest plChannelLikesUpdateRequest);
 
@@ -329,6 +348,7 @@ public interface PLChannelService extends PLBaseService {
      * </pre>
      *
      * @param plChannelLikesGetRequest 获取频道点赞数和历史观看人数请求的参数对象。
+     * @return 获取频道点赞结果对象
      */
     PLChannelLikesGetResult getLikes(PLChannelLikesGetRequest plChannelLikesGetRequest);
 
@@ -343,6 +363,7 @@ public interface PLChannelService extends PLBaseService {
      *
      * @param channelId 频道ID
      * @param plChannelDailySummaryRequest 获取频道某段时间的直播统计数据请求的参数对象。
+     * @return 频道按天汇总结果对象
      */
     PLChannelDailySummaryResult getChannelDailySummary(int channelId, PLChannelDailySummaryRequest plChannelDailySummaryRequest);
 
@@ -356,6 +377,7 @@ public interface PLChannelService extends PLBaseService {
      * </pre>
      *
      * @param plChannelManagementListRequest 获取频道列表请求的参数对象。
+     * @return 频道管理列表结果对象
      */
     PLChannelManagementListResult getSimpleChannelList(PLChannelManagementListRequest plChannelManagementListRequest);
 

@@ -24,6 +24,7 @@ public interface PLChannelRecordService extends PLBaseService {
      * </pre>
      *
      * @param request 文件ID获取录制信息请求对象。
+     * @return 获取频道录制信息结果
      */
     PLChannelRecordGetResult get(PLChannelRecordGetRequest request);
 
@@ -37,6 +38,7 @@ public interface PLChannelRecordService extends PLBaseService {
      * </pre>
      *
      * @param request 合并录制的mp4文件请求对象。
+     * @return 获取频道合并mp4对象结果
      */
     PLChannelRecordMergeMp4Result mergeMp4(PLChannelRecordMergeMp4Request request);
 
