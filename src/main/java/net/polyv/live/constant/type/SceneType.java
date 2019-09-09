@@ -1,4 +1,4 @@
-package com.polyv.live.constant.type;
+package net.polyv.live.constant.type;
 
 public class SceneType {
     
