@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.polyv</groupId>
+  <groupId>net.polyv</groupId>
   <artifactId>java-live-sdk</artifactId>
-  <version>1.5.2</version>
+  <version>1.6.0</version>
   <name>POLYV - JAVA - SDK</name>
   <description>保利威视直播JAVA工具包</description>
   <url>http://www.polyv.net</url>
@@ -151,6 +151,43 @@
 
   </build>
 
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <scm>
+    <url>https://github.com/easefun/java-live-sdk</url>
+    <connection>https://github.com/easefun/java-live-sdk.git</connection>
+    <developerConnection>https://github.com/yxylemon/excel-boot</developerConnection>
+  </scm>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
+
+  <developers>
+    <developer>
+      <name>paulHYF</name>
+      <email>563025955@qq.com</email>
+      <url>https://github.com/easefun/java-live-sdk</url>
+    </developer>
+    <developer>
+      <name>msuno</name>
+      <email>mshunwei@outlook.com</email>
+      <url>https://github.com/easefun/java-live-sdk</url>
+    </developer>
+  </developers>
 
 
 
