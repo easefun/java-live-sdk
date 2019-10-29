@@ -90,6 +90,15 @@ public class RecordFile {
      */
     protected String channelSessionId;
 
+    /**
+     * <pre>
+     *  字段名：录制文件ID
+     *  变量名：fileId
+     *  类型：String
+     * </pre>
+     */
+    protected String fileId;
+
     public Integer getChannelId() {
         return channelId;
     }
@@ -162,9 +171,17 @@ public class RecordFile {
         this.channelSessionId = channelSessionId;
     }
 
+    public String getFileId() {
+        return fileId;
+    }
+
+    public void setFileId(String fileId) {
+        this.fileId = fileId;
+    }
+
     @Override
     public String toString() {
-        return "RecordFIle{" +
+        return "RecordFile{" +
                 "channelId=" + channelId +
                 ", url='" + url + '\'' +
                 ", startTime='" + startTime + '\'' +
@@ -174,6 +191,7 @@ public class RecordFile {
                 ", bitrate=" + bitrate +
                 ", resolution='" + resolution + '\'' +
                 ", channelSessionId='" + channelSessionId + '\'' +
+                ", fileId='" + fileId + '\'' +
                 '}';
     }
 }

@@ -6,7 +6,7 @@
 
   <groupId>net.polyv</groupId>
   <artifactId>java-live-sdk</artifactId>
-  <version>1.6.0</version>
+  <version>1.6.1</version>
   <name>POLYV - JAVA - SDK</name>
   <description>保利威视直播JAVA工具包</description>
   <url>http://www.polyv.net</url>
