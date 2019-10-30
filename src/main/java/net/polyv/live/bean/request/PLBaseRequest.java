@@ -63,6 +63,9 @@ public abstract class PLBaseRequest {
      */
     protected String sign;
 
+    public PLBaseRequest() {
+    }
+
     public PLBaseRequest(String appId, String appSecret) {
         this.appId = appId;
         this.appSecret = appSecret;
