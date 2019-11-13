@@ -227,6 +227,16 @@ public class PolyvLiveConstants {
             + "v2/channelAccount/" + PARAM_REPLACE_CHAR + "/accounts";
 
     /**
+     * 异步合并接口
+     */
+    public static final String CHANNEL_RECORD_MERGE_URL = BASE_URI + "v3/channel/record/merge";
+
+    /**
+     * 异步转存接口
+     */
+    public static final String CHANNEL_RECORD_CONVERT_URL = BASE_URI + "v3/channel/record/convert";
+
+    /**
      * 400错误码
      */
     public static final int CODE_400 = 400;

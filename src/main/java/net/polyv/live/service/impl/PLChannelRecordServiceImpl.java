@@ -3,8 +3,11 @@ package net.polyv.live.service.impl;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import net.polyv.live.bean.client.WrappedResponse;
+import net.polyv.live.bean.request.record.PLChannelRecordConvertRequest;
 import net.polyv.live.bean.request.record.PLChannelRecordGetRequest;
 import net.polyv.live.bean.request.record.PLChannelRecordMergeMp4Request;
+import net.polyv.live.bean.request.record.PLChannelRecordMergeRequest;
+import net.polyv.live.bean.result.PLCommonResult;
 import net.polyv.live.bean.result.record.PLChannelRecordGetResult;
 import net.polyv.live.bean.result.record.PLChannelRecordMergeMp4Result;
 import net.polyv.live.constant.PolyvLiveConstants;
@@ -53,5 +56,31 @@ public class PLChannelRecordServiceImpl extends PLAbstractService implements PLC
             result = JSONArray.toJavaObject((JSONObject)response.getData(), PLChannelRecordMergeMp4Result.class);
         }
         return getResult(response, result);
+    }
+
+    /**
+     * <pre>
+     *  异步合并录制文件接口
+     * </pre>
+     *
+     * @param request 异步合并录制文件请求对象。
+     * @return 获取异步合并请求对象结果
+     */
+    public PLCommonResult merge(PLChannelRecordMergeRequest request) {
+        return getPLCommonResult(PolyvLiveConstants.CHANNEL_RECORD_MERGE_URL, null,
+                request.getParams(), POST_METHOD);
+    }
+
+    /**
+     * <pre>
+     *  异步转存录制文件接口
+     * </pre>
+     *
+     * @param request 异步转存录制文件请求对象。
+     * @return 异步转存请求对象结果
+     */
+    public PLCommonResult convert(PLChannelRecordConvertRequest request) {
+        return getPLCommonResult(PolyvLiveConstants.CHANNEL_RECORD_CONVERT_URL, null,
+                request.getParams(), POST_METHOD);
     }
 }
