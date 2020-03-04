@@ -215,6 +215,18 @@ public class PLChannelAuthSettingBody {
      * </pre>
      */
     private String externalRedirectUri;
+
+    /**
+     * <pre>
+     * 字段名：直接授权key
+     * 变量名：directKey
+     * 是否必填：否
+     * 类型：string
+     * 示例值：xxxxxxx
+     * 描述：authType：direct
+     * </pre>
+     */
+    private String directKey;
     
     public Byte getRank() {
         return rank;
@@ -350,5 +362,13 @@ public class PLChannelAuthSettingBody {
     
     public void setExternalRedirectUri(String externalRedirectUri) {
         this.externalRedirectUri = externalRedirectUri;
+    }
+
+    public String getDirectKey() {
+        return directKey;
+    }
+
+    public void setDirectKey(String directKey) {
+        this.directKey = directKey;
     }
 }

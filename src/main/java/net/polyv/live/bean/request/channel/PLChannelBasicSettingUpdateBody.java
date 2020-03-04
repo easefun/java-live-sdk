@@ -120,14 +120,14 @@ public class PLChannelBasicSettingUpdateBody {
     /**
      * <pre>
      * 字段名：频道提问开关
-     * 变量名：consultingMenuEnable
+     * 变量名：consultingMenuEnabled
      * 是否必填：否
      * 类型：string
      * 示例值：Y
      * 描述：频道提问开关Y,N
      * </pre>
      */
-    private String consultingMenuEnable;
+    private String consultingMenuEnabled;
     
     /**
      * <pre>
@@ -248,15 +248,15 @@ public class PLChannelBasicSettingUpdateBody {
     public void setSplashImg(String splashImg) {
         this.splashImg = splashImg;
     }
-    
-    public String getConsultingMenuEnable() {
-        return consultingMenuEnable;
+
+    public String getConsultingMenuEnabled() {
+        return consultingMenuEnabled;
     }
-    
-    public void setConsultingMenuEnable(String consultingMenuEnable) {
-        this.consultingMenuEnable = consultingMenuEnable;
+
+    public void setConsultingMenuEnabled(String consultingMenuEnabled) {
+        this.consultingMenuEnabled = consultingMenuEnabled;
     }
-    
+
     public Long getPageView() {
         return pageView;
     }

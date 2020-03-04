@@ -35,6 +35,18 @@ public class PLChannelPlaybackListGetRequest extends PLBaseRequest {
      */
     protected Integer pageSize;
 
+    /**
+     * <pre>
+     * 字段名：回放类型
+     * 变量名：listType
+     * 是否必填：是
+     * 类型：string
+     * 示例值：vod  --  点播列表
+     * 描述：playback-回放列表，vod-点播列表; 默认普通直播场景为vod，三分屏为playback
+     * </pre>
+     */
+    protected String listType;
+
     public Integer getPage() {
         return page;
     }
@@ -55,11 +67,20 @@ public class PLChannelPlaybackListGetRequest extends PLBaseRequest {
         super(appId, appSecret);
     }
 
+    public String getListType() {
+        return listType;
+    }
+
+    public void setListType(String listType) {
+        this.listType = listType;
+    }
+
     @Override
     public String toString() {
         return "PLChannelPlaybackListGetRequest{" +
                 "page=" + page +
                 ", pageSize=" + pageSize +
+                ", listType='" + listType + '\'' +
                 '}';
     }
 }
