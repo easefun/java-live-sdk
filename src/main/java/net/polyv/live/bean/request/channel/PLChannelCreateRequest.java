@@ -83,6 +83,42 @@ public class PLChannelCreateRequest extends PLBaseRequest {
      */
     protected String playerColor;
 
+    /**
+     * <pre>
+     * 字段名：直播场景
+     * 变量名：scene
+     * 是否必填：否
+     * 类型：String(64)
+     * 示例值：alone
+     * 描述：alone 活动拍摄, ppt 三分屏, topclass 大班课
+     * </pre>
+     */
+    protected String scene;
+
+    /**
+     * <pre>
+     * 字段名：所属分类
+     * 变量名：categoryId
+     * 是否必填：否
+     * 类型：int(11)
+     * 示例值：0
+     * 描述：新建频道的所属分类，如果不提交，则为默认分类（分类ID可通过“获取直播分类”接口得到）
+     * </pre>
+     */
+    protected Integer categoryId;
+
+    /**
+     * <pre>
+     * 字段名：大在线人数观看限制
+     * 变量名：maxViewer
+     * 是否必填：否
+     * 类型：int(11)
+     * 示例值：20
+     * 描述：频道的最大在线人数观看限制的人数
+     * </pre>
+     */
+    protected Integer maxViewer;
+
     public String getUserId() {
         return userId;
     }
@@ -131,6 +167,30 @@ public class PLChannelCreateRequest extends PLBaseRequest {
         this.playerColor = playerColor;
     }
 
+    public String getScene() {
+        return scene;
+    }
+
+    public void setScene(String scene) {
+        this.scene = scene;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Integer getMaxViewer() {
+        return maxViewer;
+    }
+
+    public void setMaxViewer(Integer maxViewer) {
+        this.maxViewer = maxViewer;
+    }
+
     public PLChannelCreateRequest(String appId, String appSecret) {
         super(appId, appSecret);
     }
@@ -139,16 +199,18 @@ public class PLChannelCreateRequest extends PLBaseRequest {
     public String toString() {
         return "PLChannelCreateRequest{" +
                 "userId='" + userId + '\'' +
-                ", appId='" + appId + '\'' +
                 ", name='" + name + '\'' +
-                ", appSecret='" + appSecret + '\'' +
                 ", channelPasswd='" + channelPasswd + '\'' +
-                ", timestamp=" + timestamp +
                 ", courseId='" + courseId + '\'' +
-                ", sign='" + sign + '\'' +
                 ", autoPlay=" + autoPlay +
                 ", playerColor='" + playerColor + '\'' +
+                ", scene='" + scene + '\'' +
+                ", categoryId=" + categoryId +
+                ", maxViewer=" + maxViewer +
+                ", appId='" + appId + '\'' +
+                ", appSecret='" + appSecret + '\'' +
+                ", timestamp=" + timestamp +
+                ", sign='" + sign + '\'' +
                 '}';
     }
-
 }
