@@ -2,6 +2,8 @@ package net.polyv.live.bean.request.channel;
 
 import net.polyv.live.bean.request.PLBaseBody;
 
+import java.util.List;
+
 /**
  * <pre>
  *  POLYV创建频道body对象
@@ -33,7 +35,7 @@ public class PLChannelBasicCreateBody extends PLBaseBody {
      * 描述：文档（http://dev.polyv.net/2018/liveproduct/l-api/szgkygg/ymgktj/channel-auth-update/）
      * </pre>
      */
-    private PLChannelAuthSettingBody authSettings;
+    private List<PLChannelAuthSettingBody> authSettings;
     
     public PLChannelBasicSettingCreateBody getBasicSetting() {
         return basicSetting;
@@ -42,12 +44,12 @@ public class PLChannelBasicCreateBody extends PLBaseBody {
     public void setBasicSetting(PLChannelBasicSettingCreateBody basicSetting) {
         this.basicSetting = basicSetting;
     }
-    
-    public PLChannelAuthSettingBody getAuthSettings() {
+
+    public List<PLChannelAuthSettingBody> getAuthSettings() {
         return authSettings;
     }
-    
-    public void setAuthSettings(PLChannelAuthSettingBody authSettings) {
+
+    public void setAuthSettings(List<PLChannelAuthSettingBody> authSettings) {
         this.authSettings = authSettings;
     }
 }
