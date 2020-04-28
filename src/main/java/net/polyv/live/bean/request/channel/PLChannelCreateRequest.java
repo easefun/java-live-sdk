@@ -131,8 +131,11 @@ public class PLChannelCreateRequest extends PLBaseRequest {
         this.playerColor = playerColor;
     }
 
-    public PLChannelCreateRequest(String appId, String appSecret) {
+    public PLChannelCreateRequest(String appId, String appSecret, String userId, String name, String channelPasswd) {
         super(appId, appSecret);
+        this.userId = userId;
+        this.name = name;
+        this.channelPasswd = channelPasswd;
     }
 
     @Override

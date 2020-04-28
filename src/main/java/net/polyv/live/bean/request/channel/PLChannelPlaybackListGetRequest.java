@@ -51,8 +51,9 @@ public class PLChannelPlaybackListGetRequest extends PLBaseRequest {
         this.pageSize = pageSize;
     }
 
-    public PLChannelPlaybackListGetRequest(String appId, String appSecret) {
+    public PLChannelPlaybackListGetRequest(String appId, String appSecret, Integer pageSize) {
         super(appId, appSecret);
+        this.pageSize = pageSize;
     }
 
     @Override

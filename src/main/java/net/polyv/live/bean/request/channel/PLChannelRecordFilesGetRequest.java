@@ -91,8 +91,9 @@ public class PLChannelRecordFilesGetRequest extends PLBaseRequest {
         this.sessionId = sessionId;
     }
 
-    public PLChannelRecordFilesGetRequest(String appId, String appSecret) {
+    public PLChannelRecordFilesGetRequest(String appId, String appSecret, String userId) {
         super(appId, appSecret);
+        this.userId = userId;
     }
 
     @Override

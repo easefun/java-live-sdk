@@ -51,8 +51,9 @@ public class PLChannelPasswordSetRequest extends PLBaseRequest {
         this.passwd = passwd;
     }
 
-    public PLChannelPasswordSetRequest(String appId, String appSecret) {
+    public PLChannelPasswordSetRequest(String appId, String appSecret, String passwd) {
         super(appId, appSecret);
+        this.passwd = passwd;
     }
 
     @Override

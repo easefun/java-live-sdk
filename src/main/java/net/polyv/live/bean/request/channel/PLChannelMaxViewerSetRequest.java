@@ -51,8 +51,10 @@ public class PLChannelMaxViewerSetRequest extends PLBaseRequest {
         this.maxViewer = maxViewer;
     }
 
-    public PLChannelMaxViewerSetRequest(String appId, String appSecret) {
+    public PLChannelMaxViewerSetRequest(String appId, String appSecret, String userId, String maxViewer) {
         super(appId, appSecret);
+        this.userId = userId;
+        this.maxViewer = maxViewer;
     }
 
     @Override

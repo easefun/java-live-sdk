@@ -31,8 +31,9 @@ public class PLChannelPlaybackSetDefaultRequest extends PLBaseRequest {
         this.videoId = videoId;
     }
 
-    public PLChannelPlaybackSetDefaultRequest(String appId, String appSecret) {
+    public PLChannelPlaybackSetDefaultRequest(String appId, String appSecret, String videoId) {
         super(appId, appSecret);
+        this.videoId = videoId;
     }
 
     @Override

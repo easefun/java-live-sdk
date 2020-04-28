@@ -131,8 +131,13 @@ public class PLChannelRecordFileConvertRequest extends PLBaseRequest {
         this.toPlayList = toPlayList;
     }
 
-    public PLChannelRecordFileConvertRequest(String appId, String appSecret) {
+    public PLChannelRecordFileConvertRequest(String appId, String appSecret, String userId, String fileUrl, String fileName, String cataid, String cataname) {
         super(appId, appSecret);
+        this.userId = userId;
+        this.fileUrl = fileUrl;
+        this.fileName = fileName;
+        this.cataid = cataid;
+        this.cataname = cataname;
     }
 
     @Override
