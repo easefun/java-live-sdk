@@ -51,8 +51,9 @@ public class PLChannelPlaybackSetRequest extends PLBaseRequest {
         this.playBackEnabled = playBackEnabled;
     }
 
-    public PLChannelPlaybackSetRequest(String appId, String appSecret) {
+    public PLChannelPlaybackSetRequest(String appId, String appSecret, String playBackEnabled) {
         super(appId, appSecret);
+        this.playBackEnabled = playBackEnabled;
     }
 
     @Override

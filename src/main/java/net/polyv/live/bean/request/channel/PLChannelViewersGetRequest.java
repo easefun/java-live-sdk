@@ -31,8 +31,9 @@ public class PLChannelViewersGetRequest extends PLBaseRequest {
         this.channelIds = channelIds;
     }
 
-    public PLChannelViewersGetRequest(String appId, String appSecret) {
+    public PLChannelViewersGetRequest(String appId, String appSecret, String channelIds) {
         super(appId, appSecret);
+        this.channelIds = channelIds;
     }
 
     @Override

@@ -31,8 +31,9 @@ public class PLChannelDeleteRequest extends PLBaseRequest {
         this.userId = userId;
     }
 
-    public PLChannelDeleteRequest(String appId, String appSecret) {
+    public PLChannelDeleteRequest(String appId, String appSecret, String userId) {
         super(appId, appSecret);
+        this.userId = userId;
     }
 
     @Override

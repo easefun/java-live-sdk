@@ -31,8 +31,9 @@ public class PLChannelLikesGetRequest extends PLBaseRequest {
         this.channelIds = channelIds;
     }
 
-    public PLChannelLikesGetRequest(String appId, String appSecret) {
+    public PLChannelLikesGetRequest(String appId, String appSecret, String channelIds) {
         super(appId, appSecret);
+        this.channelIds = channelIds;
     }
 
     @Override

@@ -31,8 +31,9 @@ public class PLChannelRecordFileMergeRequest extends PLBaseRequest {
         this.urls = urls;
     }
 
-    public PLChannelRecordFileMergeRequest(String appId, String appSecret) {
+    public PLChannelRecordFileMergeRequest(String appId, String appSecret, String urls) {
         super(appId, appSecret);
+        this.urls = urls;
     }
 
     @Override

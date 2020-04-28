@@ -51,8 +51,10 @@ public class PLChannelLikesUpdateRequest extends PLBaseRequest {
         this.viewers = viewers;
     }
 
-    public PLChannelLikesUpdateRequest(String appId, String appSecret) {
+    public PLChannelLikesUpdateRequest(String appId, String appSecret, Integer likes, Integer viewers) {
         super(appId, appSecret);
+        this.likes = likes;
+        this.viewers = viewers;
     }
 
     @Override

@@ -91,8 +91,10 @@ public class PLChannelViewLogsGetRequest extends PLBaseRequest {
         this.param1 = param1;
     }
 
-    public PLChannelViewLogsGetRequest(String appId, String appSecret) {
+    public PLChannelViewLogsGetRequest(String appId, String appSecret, Integer pageSize, String currentDay) {
         super(appId, appSecret);
+        this.pageSize = pageSize;
+        this.currentDay = currentDay;
     }
 
     @Override

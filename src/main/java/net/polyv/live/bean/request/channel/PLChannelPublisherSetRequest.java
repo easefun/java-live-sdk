@@ -51,8 +51,10 @@ public class PLChannelPublisherSetRequest extends PLBaseRequest {
         this.channelId = channelId;
     }
 
-    public PLChannelPublisherSetRequest(String appId, String appSecret) {
+    public PLChannelPublisherSetRequest(String appId, String appSecret, String publisher, Integer channelId) {
         super(appId, appSecret);
+        this.publisher = publisher;
+        this.channelId = channelId;
     }
 
     @Override

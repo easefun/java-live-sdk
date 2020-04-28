@@ -31,8 +31,9 @@ public class PLChannelNameSetRequest extends PLBaseRequest {
         this.name = name;
     }
 
-    public PLChannelNameSetRequest(String appId, String appSecret) {
+    public PLChannelNameSetRequest(String appId, String appSecret, String name) {
         super(appId, appSecret);
+        this.name = name;
     }
 
     @Override

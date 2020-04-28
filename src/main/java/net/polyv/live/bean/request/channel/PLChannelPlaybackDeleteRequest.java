@@ -31,8 +31,9 @@ public class PLChannelPlaybackDeleteRequest extends PLBaseRequest {
         this.videoId = videoId;
     }
 
-    public PLChannelPlaybackDeleteRequest(String appId, String appSecret) {
+    public PLChannelPlaybackDeleteRequest(String appId, String appSecret, String videoId) {
         super(appId, appSecret);
+        this.videoId = videoId;
     }
 
     @Override

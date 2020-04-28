@@ -71,10 +71,11 @@ public class PLChannelSummaryListGetRequest extends PLBaseRequest {
         this.endDate = endDate;
     }
 
-    public PLChannelSummaryListGetRequest(String appId, String appSecret) {
+    public PLChannelSummaryListGetRequest(String appId, String appSecret, String startDate, String endDate) {
         super(appId, appSecret);
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
-
 
     @Override
     public String toString() {

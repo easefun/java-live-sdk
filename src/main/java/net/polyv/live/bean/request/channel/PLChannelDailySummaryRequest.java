@@ -51,8 +51,10 @@ public class PLChannelDailySummaryRequest extends PLBaseRequest {
         this.endDay = endDay;
     }
 
-    public PLChannelDailySummaryRequest(String appId, String appSecret) {
+    public PLChannelDailySummaryRequest(String appId, String appSecret, String startDay, String endDay) {
         super(appId, appSecret);
+        this.startDay = startDay;
+        this.endDay = endDay;
     }
 
     @Override

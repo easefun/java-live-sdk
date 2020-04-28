@@ -10,7 +10,7 @@ import net.polyv.live.bean.request.PLBaseRequest;
  * @author moshunwei
  */
 public class PLChannelBasicCreateRequest extends PLBaseRequest {
-    
+
     /**
      * <pre>
      * 字段名：创建频道默认值请求体
@@ -22,20 +22,16 @@ public class PLChannelBasicCreateRequest extends PLBaseRequest {
      * </pre>
      */
     protected PLChannelBasicCreateBody requestBody;
-    
-    public PLChannelBasicCreateRequest(String appId, String appSecret) {
-        super(appId, appSecret);
-    }
-    
+
     public PLChannelBasicCreateRequest(String appId, String appSecret, PLChannelBasicCreateBody requestBody) {
         super(appId, appSecret);
         this.requestBody = requestBody;
     }
-    
+
     public PLChannelBasicCreateBody getRequestBody() {
         return requestBody;
     }
-    
+
     public void setRequestBody(PLChannelBasicCreateBody requestBody) {
         this.requestBody = requestBody;
     }

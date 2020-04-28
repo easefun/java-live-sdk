@@ -27,11 +27,7 @@ public class PLChannelBasicUpdateRequest extends PLBaseRequest {
      * </pre>
      */
     protected PLChannelBasicUpdateBody requestBody;
-    
-    public PLChannelBasicUpdateRequest(String appId, String appSecret) {
-        super(appId, appSecret);
-    }
-    
+
     public PLChannelBasicUpdateRequest(String appId, String appSecret, Integer channelId, PLChannelBasicUpdateBody requestBody) {
         super(appId, appSecret);
         this.channelId = channelId;
