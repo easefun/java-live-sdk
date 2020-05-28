@@ -83,6 +83,66 @@ public class PLChannelCreateRequest extends PLBaseRequest {
      */
     protected String playerColor;
 
+    /**
+     * <pre>
+     * 字段名：直播场景
+     * 变量名：scene
+     * 是否必填：否
+     * 类型：String(64)
+     * 示例值：默认：alone
+     * 描述：直播场景：alone 活动拍摄; ppt 三分屏; topclass 大班课
+     * </pre>
+     */
+    protected String scene;
+
+    /**
+     * <pre>
+     * 字段名：分类ID
+     * 变量名：categoryId
+     * 是否必填：否
+     * 类型：int(11)
+     * 示例值：1
+     * 描述：新建频道的所属分类，如果不提交，则为默认分类（分类ID可通过“获取直播分类”接口得到）
+     * </pre>
+     */
+    protected Integer categoryId;
+
+    /**
+     * <pre>
+     * 字段名：频道的最大在线观看的人数
+     * 变量名：maxViewer
+     * 是否必填：否
+     * 类型：int(11)
+     * 示例值：1
+     * 描述：频道的最大在线观看的人数
+     * </pre>
+     */
+    protected Integer maxViewer;
+
+    /**
+     * <pre>
+     * 字段名：三分屏频道的观看布局
+     * 变量名：watchLayout
+     * 是否必填：否
+     * 类型：String(64)
+     * 示例值：ppt
+     * 描述：三分屏频道的观看布局，不设置会使用账号的通用设置，取值：ppt 文档为主，video 视频为主
+     * </pre>
+     */
+    protected String watchLayout;
+
+    /**
+     * <pre>
+     * 字段名：连麦人数
+     * 变量名：linkMicLimit
+     * 是否必填：否
+     * 类型：int(11)
+     * 示例值：1
+     * 描述：连麦人数。-1：表示使用账号的连麦人数; 范围大于等于-1，小于等于账号的连麦人数，最大16人
+     * </pre>
+     */
+    protected Integer linkMicLimit;
+
     public String getUserId() {
         return userId;
     }
@@ -131,6 +191,46 @@ public class PLChannelCreateRequest extends PLBaseRequest {
         this.playerColor = playerColor;
     }
 
+    public String getScene() {
+        return scene;
+    }
+
+    public void setScene(String scene) {
+        this.scene = scene;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public Integer getMaxViewer() {
+        return maxViewer;
+    }
+
+    public void setMaxViewer(Integer maxViewer) {
+        this.maxViewer = maxViewer;
+    }
+
+    public String getWatchLayout() {
+        return watchLayout;
+    }
+
+    public void setWatchLayout(String watchLayout) {
+        this.watchLayout = watchLayout;
+    }
+
+    public Integer getLinkMicLimit() {
+        return linkMicLimit;
+    }
+
+    public void setLinkMicLimit(Integer linkMicLimit) {
+        this.linkMicLimit = linkMicLimit;
+    }
+
     public PLChannelCreateRequest(String appId, String appSecret) {
         super(appId, appSecret);
     }
@@ -139,16 +239,20 @@ public class PLChannelCreateRequest extends PLBaseRequest {
     public String toString() {
         return "PLChannelCreateRequest{" +
                 "userId='" + userId + '\'' +
-                ", appId='" + appId + '\'' +
                 ", name='" + name + '\'' +
-                ", appSecret='" + appSecret + '\'' +
                 ", channelPasswd='" + channelPasswd + '\'' +
-                ", timestamp=" + timestamp +
                 ", courseId='" + courseId + '\'' +
-                ", sign='" + sign + '\'' +
                 ", autoPlay=" + autoPlay +
                 ", playerColor='" + playerColor + '\'' +
+                ", scene='" + scene + '\'' +
+                ", categoryId=" + categoryId +
+                ", maxViewer=" + maxViewer +
+                ", watchLayout='" + watchLayout + '\'' +
+                ", linkMicLimit=" + linkMicLimit +
+                ", appId='" + appId + '\'' +
+                ", appSecret='" + appSecret + '\'' +
+                ", timestamp=" + timestamp +
+                ", sign='" + sign + '\'' +
                 '}';
     }
-
 }

@@ -176,6 +176,18 @@ public class PLChannelBasicSettingUpdateBody {
      * </pre>
      */
     private Integer maxViewerRestrict;
+
+    /**
+     * <pre>
+     * 字段名：连麦人数
+     * 变量名：linkMicLimit
+     * 是否必填：否
+     * 类型：int
+     * 示例值：1
+     * 描述：连麦人数。-1：表示当前账号的连麦人数，范围大于等于-1，小于等于账号的连麦人数，最大16人
+     * </pre>
+     */
+    private Integer linkMicLimit;
     
     public String getName() {
         return name;
@@ -287,5 +299,13 @@ public class PLChannelBasicSettingUpdateBody {
     
     public void setMaxViewerRestrict(Integer maxViewerRestrict) {
         this.maxViewerRestrict = maxViewerRestrict;
+    }
+
+    public Integer getLinkMicLimit() {
+        return linkMicLimit;
+    }
+
+    public void setLinkMicLimit(Integer linkMicLimit) {
+        this.linkMicLimit = linkMicLimit;
     }
 }

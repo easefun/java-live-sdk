@@ -121,8 +121,10 @@ public abstract class PLAbstractService {
             String paramStr = MapUtil.mapJoinNotEncode(params);
             if (StringUtils.isNotBlank(paramStr))
                 paramStr = MarkConstants.QUESTION_MARK + paramStr;
+            System.out.println(url + paramStr);
             content = client.sendHttpGet(url + paramStr);
         }
+        logger.info(content);
         T t = null;
         if (StringUtils.isNotBlank(content)) {
             try {
