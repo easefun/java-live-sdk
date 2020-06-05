@@ -62,3 +62,4 @@ jobs:
           asset_path: ./java-live-sdk-${{ env.VERSION }}-jar-with-dependencies.tar.gz
           asset_name: java-live-sdk-${{ env.VERSION }}-jar-with-dependencies.tar.gz
           asset_content_type: application/tar.gz
+
