@@ -6,7 +6,7 @@
 <dependency>
   <groupId>net.polyv</groupId>
   <artifactId>java-live-sdk</artifactId>
-  <version>1.6.0</version>
+  <version>1.7.4</version>
 </dependency>
 ```
 
